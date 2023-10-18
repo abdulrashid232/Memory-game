@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="/assets/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Epilogue:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=IBM+Plex+Sans:wght@100;200;300;500;600;700&family=Roboto+Condensed:wght@300;400;700&family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Memory Game</title>
+</head>
+<body>
+  <h1>Memory</h1>
+  <div class="main-container">
+    <div class="card">
+      <h4>Select Theme</h4>
+      <div class="btn-container">
+        <label class="radio-button theme">
+          <input type="radio" id="numbers" name="theme">
+          <div class="button-text">Numbers</div>
+        </label>
+        <label class="radio-button theme ">
+          <input type="radio" id="icons" name="theme">
+          <div class="button-text">Icons</div>
+        </label>
+      </div>
+    </div>
+    <div class="card">
+      <h4>Numbers of Players</h4>
+      <div class="btn-container">
+      <label class="radio-button players">
+        <input type="radio" id="1" name="player">
+        <div class="button-text">1</div>
+      </label>
+      <label class="radio-button players">
+        <input type="radio" id="2" name="player">
+        <div class="button-text">2</div>
+      </label>
+      <label class="radio-button players">
+        <input type="radio" id="3" name="player">
+        <div class="button-text">3</div>
+      </label>
+      <label class="radio-button players">
+        <input type="radio" id="4" name="player">
+        <div class="button-text">4</div>
+      </label>
+      </div>
+    </div>
+    <div class="card">
+      <h4>Grid Size</h4>
+      <div class="btn-container">
+        <label class="radio-button grid">
+          <input type="radio" id="4x4" name="grid">
+          <div class="button-text">4x4</div>
+        </label>
+        <label class="radio-button grid">
+          <input type="radio" id="6x6" name="grid">
+          <div class="button-text">6x6</div>
+        </label>
+      </div>
+    </div>
+      <button class="btn start">Start Game</button>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>

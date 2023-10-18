@@ -1,0 +1,114 @@
+:root{
+  /* primary colors */
+  --primary-color1: #fda214;
+  --primary-color2: #bcced9;
+  --primary-color3: #152938;
+  --primary-color4: #304859;
+
+  /* neutral colors */
+  --secondary-color1: #f2f2f2;
+  --secondary-color2: #7191a5;
+  --secondary-color3: #6395b8;
+  --secondary-color4: #fcfcfc;
+
+  /* font-family */
+
+  --font-family:'Atkinson Hyperlegible';
+
+}
+body{
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--secondary-color1);
+  background-color:var(--primary-color4) ;
+  font-family: var(--font-family);
+  height: 100vh;
+}
+.main-container{
+  border-radius: 10px;
+  background-color: var(--secondary-color4);
+  width: 654px;
+  height: 559px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card{
+  width: 542px;
+}
+.card h4{
+  color: var(--primary-color2);
+  margin-left: 10px;
+}
+.btn-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+}
+
+
+input[type="radio"] {
+  display: none;
+}
+
+.radio-button {
+  display: inline-block;
+  background-color:var(--primary-color2);
+  color: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  text-align: center;
+  
+}
+.radio-button:hover{
+  background-color: var(--secondary-color3);
+}
+.radio-button.theme{
+  width: 256px;
+  height: 52px;
+}
+.radio-button.players{
+  width: 119px;
+  height: 52px;
+}
+.radio-button.grid{
+  width: 256px;
+  height: 52px;
+}
+
+
+input[type="radio"]:checked + .button-text {
+  background-color:var(--primary-color3);
+  border-radius: 50px;
+}
+
+.button-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 52px;
+  font-size: 30px;
+  font-weight:bold ;
+}
+.btn{
+  border: none;
+  border-radius: 50px;
+  color: var(--secondary-color4);
+}
+.btn.start{
+  width: 541px;
+  height: 70px;
+  font-size: 40px;
+  font-weight: bold;
+  background-color: var(--primary-color1);
+  cursor: pointer;
+}
+.btn.start:hover{
+  background-color: #f8ac32
+}
