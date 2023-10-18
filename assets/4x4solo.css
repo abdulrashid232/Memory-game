@@ -1,0 +1,121 @@
+:root{
+  /* primary colors */
+  --primary-color1: #fda214;
+  --primary-color2: #bcced9;
+  --primary-color3: #152938;
+  --primary-color4: #304859;
+
+  /* neutral colors */
+  --secondary-color1: #f2f2f2;
+  --secondary-color2: #7191a5;
+  --secondary-color3: #6395b8;
+  --secondary-color4: #fcfcfc;
+
+  /* font-family */
+
+  --font-family:'Atkinson Hyperlegible';
+
+}
+body{
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--primary-color3);
+  background-color:var(--secondary-color4) ;
+  font-family: var(--font-family);
+  height: 100vh;
+}
+.header{
+  display: flex;
+  align-items: center;
+  width: 900px;
+  height: 52px;
+  justify-content: space-between;
+  margin-bottom: 6rem;
+}
+.header h1{
+  font-size: 40px;
+  font-weight: bold;
+}
+
+
+.btn{
+  border: none;
+  border-radius: 50px;
+  color: var(--secondary-color4);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn.restart{
+  background-color: var(--primary-color1);
+  width: 127px;
+  height: 52px;
+}
+.btn.newGame{
+  background-color: var(--secondary-color1);
+  color: var(--primary-color3);
+  width:149px;
+  height: 52px;
+}
+.grid-container{
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  justify-content: center;
+  width: 532px;
+  height: 532px;
+}
+.grid-item{
+  border: 1px solid red;
+  border-radius: 50px;
+  width: 118px;
+  height: 118px;
+}
+
+
+.flip-card {
+  background-color: transparent;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  perspective: 1000px; 
+}
+
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  -webkit-backface-visibility: hidden; 
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color:var(--primary-color3);
+}
+
+.flip-card-back {
+  background-color:var(--primary-color2);
+  color: white;
+  transform: rotateY(180deg);
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
