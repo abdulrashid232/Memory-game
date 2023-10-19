@@ -16,17 +16,6 @@
   --font-family:'Atkinson Hyperlegible';
 
 }
-/* body{
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: var(--primary-color3);
-  background-color:var(--secondary-color4) ;
-  font-family: var(--font-family);
-  height: 100vh;
-} */
 .header{
   display: flex;
   align-items: center;

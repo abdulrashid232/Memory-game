@@ -1,5 +1,20 @@
 const StartBtn = document.querySelector('.btn-start');
-StartBtn.addEventListener('click', createFlipCardGrid);
+const numbersInput = document.getElementById('numbers');
+const onePlayerInput = document.getElementById('1');
+const fourByFourInput = document.getElementById('4x4');
+
+
+// function for checking if options are selectd
+
+StartBtn.addEventListener('click', () => {
+  if (numbersInput.checked && onePlayerInput.checked && fourByFourInput.checked) {
+    createFlipCardGrid();
+  } else {
+    alert('Please select all the required options before starting the game.');
+  }
+});
+
+
 let timerStarted = false;
 let moves = 0;
 let flippedCards = [];
