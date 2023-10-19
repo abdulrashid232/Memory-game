@@ -61,19 +61,12 @@ body{
   height: 52px;
 }
 .grid-container{
-  /* border: 1px solid red; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
   justify-content: center;
   width: 532px;
   height: 532px;
-}
-.grid-item{
-  border: 1px solid red;
-  border-radius: 50px;
-  width: 118px;
-  height: 118px;
 }
 
 
@@ -118,4 +111,31 @@ body{
   justify-content: center;
   align-items: center;
 
+}
+.bot-nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 540px;
+  margin-top: 2rem;
+}
+.bot-nav h5{
+  color: var(--secondary-color3);
+  font-size: 18px;
+  font-family: var(--font-family);
+}
+.move-container,.time-container{
+  display: flex;
+  align-items: center;
+  justify-content:space-around ;
+  width: 255px;
+  height: 72px;
+  background-color: var(--primary-color2);
+  border-radius: 10px;
+  
+}
+.move-container p,.time-container label{
+  color: var(--primary-color3);
+  font-size: 32px;
+  font-weight: bold;
 }
