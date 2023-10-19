@@ -44,7 +44,7 @@ function createFlipCardGrid() {
       flipCardBack.classList.add('flip-card-back');
 
       const h1 = document.createElement('h1');
-      h1.textContent = '1';
+      h1.textContent = '';
 
       flipCardBack.appendChild(h1);
       flipCardInner.appendChild(flipCardFront);
@@ -59,31 +59,52 @@ function createFlipCardGrid() {
       document.body.appendChild(bottomNav);
  
   }
+   // Create an array of pairs of numbers
+  const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+  const shuffledPairs = shuffleArray([...pairs, ...pairs]);
+
+  const h1Elements = document.querySelectorAll('.flip-card h1');
+  h1Elements.forEach((h1, index) => {
+    h1.textContent = shuffledPairs[index];
+  });
+
   // Flipcard event-listener
   const flipCards = document.querySelectorAll('.flip-card');
-  let firstFlippedCard = null; // Track the first flipped card
+  // let firstFlippedCard = null;
 
   flipCards.forEach(card => {
     card.addEventListener('click', () => {
-      if (card.classList.contains('flipped')) {
-        unflipCard(card);
-      } else {
-        if (flippedCards.length < 2) {
-          flipCard(card);
-          flippedCards.push(card);
+      if (!card.classList.contains('flipped') && flippedCards.length < 2) {
+        flipCard(card);
+        flippedCards.push(card);
 
-          if (!timerStarted) {
-            timerStarted = true;
-            setInterval(setTime, 1000);
-          }
+        if (!timerStarted) {
+          timerStarted = true;
+          setInterval(setTime, 1000);
+        }
+      }
+
+      if (flippedCards.length === 2) {
+        const [card1, card2] = flippedCards;
+        const h1Element1 = card1.querySelector('h1');
+        const h1Element2 = card2.querySelector('h1');
+
+        if (h1Element1.textContent === h1Element2.textContent) {
+          // Matched cards, keep them flipped
+          card1.removeEventListener('click', flipCard);
+          card2.removeEventListener('click', flipCard);
+        }
+        else {
+          // Unmatched cards, unflip them after a delay
+          setTimeout(() => {
+            unflipCard(card1);
+            unflipCard(card2);
+          }, 1000);
         }
 
-        if (flippedCards.length === 2) {
-          // Two cards are flipped
-          moves++; // Increment the moves count
-          updateMovesDisplay();
-          flippedCards = []; // Reset flippedCards array
-        }
+        moves++;
+        updateMovesDisplay();
+        flippedCards = [];
       }
     });
   });
@@ -107,6 +128,13 @@ function unflipCard(card) {
 function updateMovesDisplay() {
   const movesDisplay = document.querySelector('.moves');
   movesDisplay.textContent = moves;
+}
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 let minutesLabel = document.getElementById("minutes");
 let secondsLabel = document.getElementById("seconds");
