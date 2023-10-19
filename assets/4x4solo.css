@@ -16,7 +16,7 @@
   --font-family:'Atkinson Hyperlegible';
 
 }
-body{
+/* body{
   margin: 0;
   display: flex;
   justify-content: center;
@@ -26,7 +26,7 @@ body{
   background-color:var(--secondary-color4) ;
   font-family: var(--font-family);
   height: 100vh;
-}
+} */
 .header{
   display: flex;
   align-items: center;
@@ -38,6 +38,7 @@ body{
 .header h1{
   font-size: 40px;
   font-weight: bold;
+  color: var(--primary-color3) !important
 }
 
 
