@@ -94,8 +94,6 @@ function flipCard(card) {
     innerCard.forEach(element => {
         element.style.transform = 'rotateY(180deg)';
     });
-    // moves++;
-    // updateMovesDisplay();
 
 }
 
