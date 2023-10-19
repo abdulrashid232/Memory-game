@@ -3,9 +3,7 @@ const numbersInput = document.getElementById('numbers');
 const onePlayerInput = document.getElementById('1');
 const fourByFourInput = document.getElementById('4x4');
 
-
-// function for checking if options are selectd
-
+// function for checking if options are selected
 StartBtn.addEventListener('click', () => {
   if (numbersInput.checked && onePlayerInput.checked && fourByFourInput.checked) {
     createFlipCardGrid();
@@ -13,7 +11,6 @@ StartBtn.addEventListener('click', () => {
     alert('Please select all the required options before starting the game.');
   }
 });
-
 
 let timerStarted = false;
 let moves = 0;
@@ -107,6 +104,7 @@ function createFlipCardGrid() {
             // Matched cards, keep them flipped
             card1.removeEventListener('click', flipCard);
             card2.removeEventListener('click', flipCard);
+            markMatched([card1, card2]); // Change background color and mark as matched
             matchedPairs++; // Increment matched pairs count
             if (matchedPairs === numCards / 2) {
               // All pairs are matched, stop the timer
@@ -141,6 +139,16 @@ function createFlipCardGrid() {
     let innerCard = card.querySelectorAll('.flip-card-inner');
     innerCard.forEach(element => {
       element.style.transform = 'rotateY(0deg)';
+    });
+  }
+
+  function markMatched(cards) {
+    cards.forEach(card => {
+      card.classList.add('matched');
+      let innerCard = card.querySelectorAll('.flip-card-back');
+      innerCard.forEach(element => {
+        element.style.backgroundColor = '#fda214';
+      });
     });
   }
 
