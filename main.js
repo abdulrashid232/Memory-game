@@ -1,6 +1,8 @@
 const StartBtn = document.querySelector('.btn-start');
 StartBtn.addEventListener('click',createFlipCardGrid)
 let timerStarted = false;
+let moves = 0;
+let flippedCards = [];
 
 
 function createFlipCardGrid() {
@@ -22,7 +24,7 @@ function createFlipCardGrid() {
   </div>
   <div class="move-container">
     <h5>Moves</h5>
-    <p class="moves">39</p>
+    <p class="moves">0</p>
   </div>
 </div>`;
   const numCards = 16;
@@ -58,28 +60,33 @@ function createFlipCardGrid() {
  
   }
   // Flipcard event-listener
-  
+  const flipCards = document.querySelectorAll('.flip-card');
+  let firstFlippedCard = null; // Track the first flipped card
 
-
-
-// Flipcard
-const flipCards = document.querySelectorAll('.flip-card');
-let timerStarted = false; 
-
-flipCards.forEach(card => {
+  flipCards.forEach(card => {
     card.addEventListener('click', () => {
-        if (card.classList.contains('flipped')) {
-            unflipCard(card);
-        } else {
-            flipCard(card);
+      if (card.classList.contains('flipped')) {
+        unflipCard(card);
+      } else {
+        if (flippedCards.length < 2) {
+          flipCard(card);
+          flippedCards.push(card);
 
-            if (!timerStarted) {
-                timerStarted = true;
-                setInterval(setTime, 1000);
-            }
+          if (!timerStarted) {
+            timerStarted = true;
+            setInterval(setTime, 1000);
+          }
         }
+
+        if (flippedCards.length === 2) {
+          // Two cards are flipped
+          moves++; // Increment the moves count
+          updateMovesDisplay();
+          flippedCards = []; // Reset flippedCards array
+        }
+      }
     });
-});
+  });
 
 function flipCard(card) {
     card.classList.add('flipped');
@@ -87,6 +94,9 @@ function flipCard(card) {
     innerCard.forEach(element => {
         element.style.transform = 'rotateY(180deg)';
     });
+    // moves++;
+    // updateMovesDisplay();
+
 }
 
 function unflipCard(card) {
@@ -96,7 +106,10 @@ function unflipCard(card) {
         element.style.transform = 'rotateY(0deg)';
     });
 }
-
+function updateMovesDisplay() {
+  const movesDisplay = document.querySelector('.moves');
+  movesDisplay.textContent = moves;
+}
 let minutesLabel = document.getElementById("minutes");
 let secondsLabel = document.getElementById("seconds");
 let totalSeconds = 0;
@@ -120,4 +133,3 @@ function pad(val) {
 }
 
 
-// time functions
