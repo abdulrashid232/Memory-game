@@ -3,9 +3,8 @@ const numbersInput = document.getElementById('numbers');
 const onePlayerInput = document.getElementById('1');
 const fourByFourInput = document.getElementById('4x4');
 let totalMoves = 0; 
-let pTime; // Define pTime as a global variable
+let pTime; 
 let pMoves;
-// function for checking if options are selected
 StartBtn.addEventListener('click', () => {
   if (numbersInput.checked && onePlayerInput.checked && fourByFourInput.checked) {
     createFlipCardGrid();
@@ -207,6 +206,7 @@ function createFlipCardGrid() {
       return valString;
     }
   }
+ 
 }
 
 function createPopup() {
@@ -237,9 +237,6 @@ function createPopup() {
   const h4Time = document.createElement('h4');
   h4Time.textContent = 'Time';
 
-  // const pTime = document.createElement('p');
-  // pTime.textContent = '1:53'; // Default value, will be updated
-
   timeBox.appendChild(h4Time);
   timeBox.appendChild(pTime);
 
@@ -249,8 +246,6 @@ function createPopup() {
   const h4Moves = document.createElement('h4');
   h4Moves.textContent = 'Moves Taken';
 
-  // const pMoves = document.createElement('p');
-  // pMoves.textContent = '39 Moves'; // Default value, will be updated
 
   movesBox.appendChild(h4Moves);
   movesBox.appendChild(pMoves);
@@ -264,9 +259,20 @@ function createPopup() {
   restartButton.className = 'restart';
   restartButton.textContent = 'Restart';
 
+  restartButton.addEventListener('click', () => {
+    // Call a function to restart the game
+    restartGame();
+    // const myPopup = document.querySelector('.popup');
+    // myPopup.classList.remove('show');
+  });
+
   const newGameButton = document.createElement('button');
   newGameButton.className = 'new-game';
   newGameButton.textContent = 'Setup New Game';
+
+  newGameButton.addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
 
   popBtn.appendChild(restartButton);
   popBtn.appendChild(newGameButton);
@@ -277,4 +283,21 @@ function createPopup() {
 
   popup.appendChild(popupContent);
   document.body.appendChild(popup);
+}
+
+function restartGame() {
+  const container = document.querySelector('.grid-container');
+  if (container) {
+    container.remove();
+  }
+
+  createFlipCardGrid();
+  timerStarted = false;
+  moves = 0;
+  flippedCards = [];
+  totalMoves = 0;
+  totalSeconds = 0;
+  pMoves.textContent = '0 Moves';
+  // secondsLabel.textContent = '00';
+  // minutesLabel.textContent = '0';
 }
