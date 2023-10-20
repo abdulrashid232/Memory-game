@@ -20,11 +20,32 @@ let flippedCards = [];
 function createFlipCardGrid() {
   const header = document.createElement('div');
   header.classList.add('header');
-  header.innerHTML = `  <h1>Memory</h1>
-  <div class="top-nav">
-    <button class="btn restart">Restart</button>
-    <button class="btn newGame">New Game</button>
-  </div>`;
+  const logo = document.createElement('h1');
+  logo.textContent = 'Memory';
+  header.appendChild(logo);
+  const topNav = document.createElement('div');
+  topNav.classList.add('top-nav');
+  header.appendChild(topNav);
+
+  const restartBtn = document.createElement('button');
+  restartBtn.className = 'btn-restart';
+  restartBtn.textContent = 'Restart';
+  topNav.appendChild(restartBtn);
+
+  const newBtn = document.createElement('button');
+  newBtn.className = 'btn-newGame';
+  newBtn.textContent = 'New Game';
+  topNav.appendChild(newBtn);
+
+  restartBtn.addEventListener('click', () => {
+    restartGame();
+  });
+  // Add an event listener to the "Restart" button
+  newBtn.addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+
+  
   const bottomNav = document.createElement('div');
   bottomNav.classList.add('bot-nav');
   bottomNav.innerHTML = `<div class="bot-nav">
@@ -40,7 +61,7 @@ function createFlipCardGrid() {
   </div>
 </div>`;
 
-  const numCards = 8;
+  const numCards = 2;
   const container = document.createElement('div');
   container.classList.add('grid-container');
   for (let i = 0; i < numCards; i++) {
@@ -260,10 +281,7 @@ function createPopup() {
   restartButton.textContent = 'Restart';
 
   restartButton.addEventListener('click', () => {
-    // Call a function to restart the game
     restartGame();
-    // const myPopup = document.querySelector('.popup');
-    // myPopup.classList.remove('show');
   });
 
   const newGameButton = document.createElement('button');

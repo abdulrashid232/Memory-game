@@ -32,20 +32,32 @@
 }
 
 
-.btn{
+/* .btn{
   border: none;
   border-radius: 50px;
   color: var(--secondary-color4);
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
-}
-.btn.restart{
+} */
+.btn-restart{
+  border: none;
+  border-radius: 50px;
+  color: var(--secondary-color4);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
   background-color: var(--primary-color1);
   width: 127px;
   height: 52px;
 }
-.btn.newGame{
+.btn-newGame{
+  border: none;
+  border-radius: 50px;
+  color: var(--secondary-color4);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
   background-color: var(--secondary-color1);
   color: var(--primary-color3);
   width:149px;
@@ -208,6 +220,7 @@
   font-weight: bold;
   border-radius: 50px;
   border: none;
+  cursor: pointer;
  }
  .popBtn>.restart{
   color: var(--secondary-color1);
