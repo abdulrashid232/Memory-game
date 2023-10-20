@@ -2,7 +2,9 @@ const StartBtn = document.querySelector('.btn-start');
 const numbersInput = document.getElementById('numbers');
 const onePlayerInput = document.getElementById('1');
 const fourByFourInput = document.getElementById('4x4');
-
+let totalMoves = 0; 
+let pTime; // Define pTime as a global variable
+let pMoves;
 // function for checking if options are selected
 StartBtn.addEventListener('click', () => {
   if (numbersInput.checked && onePlayerInput.checked && fourByFourInput.checked) {
@@ -39,7 +41,7 @@ function createFlipCardGrid() {
   </div>
 </div>`;
 
-  const numCards = 4;
+  const numCards = 8;
   const container = document.createElement('div');
   container.classList.add('grid-container');
   for (let i = 0; i < numCards; i++) {
@@ -70,6 +72,11 @@ function createFlipCardGrid() {
     document.body.appendChild(container);
     document.body.appendChild(bottomNav);
   }
+  pTime = document.createElement('p'); // Assign the DOM element to the global variable
+  pTime.textContent = '1:53'; // Default value, will be updated
+
+  pMoves = document.createElement('p'); // Assign the DOM element to the global variable
+  pMoves.textContent = '39 Moves';
 
   // Create an array of pairs of numbers
   const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
@@ -105,19 +112,25 @@ function createFlipCardGrid() {
             // Matched cards, keep them flipped
             card1.removeEventListener('click', flipCard);
             card2.removeEventListener('click', flipCard);
-            markMatched([card1, card2]); 
-            matchedPairs++; 
+            markMatched([card1, card2]);
+            matchedPairs++;
             if (matchedPairs === numCards / 2) {
               // All pairs are matched, stop the timer
               clearInterval(timerInterval);
-              
-              
-              function showFun(){
-                createPopup()
+
+              const timeTaken = `${minutesLabel.textContent}:${secondsLabel.textContent}`;
+              const movesTaken = `${totalMoves} Moves`;
+
+              pTime.textContent = timeTaken;
+              pMoves.textContent = movesTaken;
+
+              function showFun() {
+                createPopup();
                 const myPopup = document.querySelector('.popup');
-                myPopup.classList.add('show')
-                }
-              showFun()
+                myPopup.classList.add('show');
+              }
+
+              showFun();
             }
           } else {
             // Unmatched cards, unflip them after a delay
@@ -162,8 +175,10 @@ function createFlipCardGrid() {
   }
 
   function updateMovesDisplay() {
+    totalMoves = moves; // Update the global totalMoves variable
+    pMoves.textContent = `${totalMoves} Moves`; // Update the global pMoves element
     const movesDisplay = document.querySelector('.moves');
-    movesDisplay.textContent = moves;
+    movesDisplay.textContent = totalMoves;
   }
 
   function shuffleArray(array) {
@@ -220,10 +235,10 @@ function createPopup() {
   timeBox.className = 'timeBox';
 
   const h4Time = document.createElement('h4');
-  h4Time.textContent = 'Time Elapsed';
+  h4Time.textContent = 'Time';
 
-  const pTime = document.createElement('p');
-  pTime.textContent = '1:53';
+  // const pTime = document.createElement('p');
+  // pTime.textContent = '1:53'; // Default value, will be updated
 
   timeBox.appendChild(h4Time);
   timeBox.appendChild(pTime);
@@ -234,8 +249,8 @@ function createPopup() {
   const h4Moves = document.createElement('h4');
   h4Moves.textContent = 'Moves Taken';
 
-  const pMoves = document.createElement('p');
-  pMoves.textContent = '39 Moves';
+  // const pMoves = document.createElement('p');
+  // pMoves.textContent = '39 Moves'; // Default value, will be updated
 
   movesBox.appendChild(h4Moves);
   movesBox.appendChild(pMoves);
