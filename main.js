@@ -38,6 +38,7 @@ function createFlipCardGrid() {
     <p class="moves">0</p>
   </div>
 </div>`;
+
   const numCards = 16;
   const container = document.createElement('div');
   container.classList.add('grid-container');
@@ -104,11 +105,12 @@ function createFlipCardGrid() {
             // Matched cards, keep them flipped
             card1.removeEventListener('click', flipCard);
             card2.removeEventListener('click', flipCard);
-            markMatched([card1, card2]); // Change background color and mark as matched
-            matchedPairs++; // Increment matched pairs count
+            markMatched([card1, card2]); 
+            matchedPairs++; 
             if (matchedPairs === numCards / 2) {
               // All pairs are matched, stop the timer
               clearInterval(timerInterval);
+              showFun();
             }
           } else {
             // Unmatched cards, unflip them after a delay
@@ -184,3 +186,18 @@ function createFlipCardGrid() {
     }
   }
 }
+
+const btnPop = document.querySelector('.btnPop');
+const myPopup = document.querySelector('.popup')
+
+btnPop.addEventListener('click', showFun);
+
+function showFun(){
+  myPopup.classList.add('show')
+}
+
+window.addEventListener("click", function (event) {
+  if (event.target == myPopup) {
+      myPopup.classList.remove("show");
+  }
+});

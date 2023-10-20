@@ -4,6 +4,7 @@
   --primary-color2: #bcced9;
   --primary-color3: #152938;
   --primary-color4: #304859;
+  --primary-color5: #DFE7EC;
 
   /* neutral colors */
   --secondary-color1: #f2f2f2;
@@ -22,7 +23,7 @@
   width: 900px;
   height: 52px;
   justify-content: space-between;
-  margin-bottom: 6rem;
+  margin-bottom: 2rem;
 }
 .header h1{
   font-size: 40px;
@@ -129,3 +130,112 @@
   font-size: 32px;
   font-weight: bold;
 }
+
+.btnPop{
+  margin-top: 2rem;
+}
+.popup {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+}
+.popup-content {
+  background-color:var(--secondary-color1);
+  margin: 10rem auto;
+  padding: 20px;
+  width: 654px;
+  height: 510px;
+  font-weight: bolder;
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+}
+/* .popup-content button {
+  display: block;
+  margin: 0 auto;
+} */
+.scores{
+  width: 542px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.show{
+  display: block;
+}
+.timeBox,.movesBox{
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  width: 100%;
+  height: 72px;
+  /* border: 1px solid red; */
+  background-color: var(--primary-color5);
+  border-radius: 10px;
+}
+.timeBox>h4,.movesBox>h4{
+ margin-left: 3rem;
+ color: var(--secondary-color3);
+ font-size: 18px;
+ font-weight: bold;
+}
+.timeBox>p,.movesBox>p{
+  margin-right: 3rem;
+  color: var(--primary-color3);
+  font-size: 30px;
+  font-weight: bold;
+ }
+ .popBtn{
+  width: 542px;
+  height: 52px;
+  display: flex;
+  justify-content: space-around;
+ }
+ .popBtn>button{
+  width: 264px;
+  height: 52px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50px;
+  border: none;
+ }
+ .popBtn>.restart{
+  color: var(--secondary-color1);
+  background-color: var(--primary-color1);
+ }
+ .popBtn>.new-game{
+  background-color: var(--primary-color5);
+ }
+ .top-note{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height:60px;
+  /* border: 1px solid red; */
+ }
+ .top-note h2{
+  font-size: 35px;
+  height: 10px;
+  font-weight: bold;
+  position: relative;
+  color: var(--primary-color3);
+  /* top: -2rem; */
+ }
+ .top-note p{
+  position: relative;
+  height: 10px;
+  font-size: 18px;
+  color: var(--secondary-color3);
+  /* top: -3rem; */
+ }
