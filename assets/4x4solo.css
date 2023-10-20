@@ -71,12 +71,28 @@
   width: 532px;
   height: 532px;
 }
+.grid-container6x6{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  height: 800px;
+}
 
 
 .flip-card {
   background-color: transparent;
   width: 100px;
   height: 100px;
+  border-radius: 100%;
+  perspective: 1000px; 
+}
+
+.flip-card6x6 {
+  background-color: transparent;
+  width: 80px;
+  height: 80px;
   border-radius: 100%;
   perspective: 1000px; 
 }
@@ -127,6 +143,18 @@
   font-size: 18px;
   font-family: var(--font-family);
 }
+.bot-nav6x6{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 800px;
+  margin-top: 2rem;
+}
+.bot-nav6x6 h5{
+  color: var(--secondary-color3);
+  font-size: 18px;
+  font-family: var(--font-family);
+}
 .move-container,.time-container{
   display: flex;
   align-items: center;
@@ -137,7 +165,22 @@
   border-radius: 10px;
   
 }
+.move-container6x6,.time-container6x6{
+  display: flex;
+  align-items: center;
+  justify-content:space-between ;
+  width: 100%;
+  height: 72px;
+  background-color: var(--primary-color2);
+  border-radius: 10px;
+  
+}
 .move-container p,.time-container label{
+  color: var(--primary-color3);
+  font-size: 32px;
+  font-weight: bold;
+}
+.move-container6x6 p,.time-container6x6 label{
   color: var(--primary-color3);
   font-size: 32px;
   font-weight: bold;
