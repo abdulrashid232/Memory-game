@@ -67,7 +67,7 @@ function createFlipCardGrid() {
     </div>
   </div>`;
 
-  const numCards = 2;
+  const numCards = 16;
   const container = document.createElement('div');
   container.classList.add('grid-container');
   for (let i = 0; i < numCards; i++) {
@@ -179,7 +179,7 @@ flipCards.forEach(card => {
     </div>
   </div>`;
 
-    const numCards = 2;
+    const numCards = 36;
     const container = document.createElement('div');
     container.classList.add('grid-container6x6');
     for (let i = 0; i < numCards; i++) {
