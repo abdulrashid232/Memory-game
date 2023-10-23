@@ -529,15 +529,26 @@ function restartGame() {
   const container = document.querySelector('.grid-container');
   if (container) {
     container.remove();
+    createFlipCardGrid();
+    timerStarted = false;
+    moves = 0;
+    flippedCards = [];
+    totalMoves = 0;
+    totalSeconds = 0;
+    pMoves.textContent = '0 Moves';
+  }
+  const container6x6 = document.querySelector('.grid-container6x6');
+  if (container6x6) {
+    container6x6.remove();
+    createFlipCardGrid6x6();
+    timerStarted = false;
+    moves = 0;
+    flippedCards = [];
+    totalMoves = 0;
+    totalSeconds = 0;
+    pMoves.textContent = '0 Moves';
   }
 
-  createFlipCardGrid();
-  timerStarted = false;
-  moves = 0;
-  flippedCards = [];
-  totalMoves = 0;
-  totalSeconds = 0;
-  pMoves.textContent = '0 Moves';
   // secondsLabel.textContent = '00';
   // minutesLabel.textContent = '0';
 }
