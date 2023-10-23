@@ -20,10 +20,12 @@
 .header{
   display: flex;
   align-items: center;
-  width: 900px;
+  width: 80%;
   height: 52px;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-top: 1rem;
+  margin-bottom:3rem ;
+  /* padding:2rem 15rem 2rem 15rem; */
 }
 .header h1{
   font-size: 40px;
@@ -65,19 +67,22 @@
 }
 .grid-container{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 20%);
+  grid-template-rows: repeat(4,20%);
   align-items: center;
   justify-content: center;
-  width: 532px;
-  height: 532px;
+  width: 600px;
+  height: 550px;
 }
 .grid-container6x6{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 17%);
+  grid-template-rows: repeat(6,17%);
   align-items: center;
   justify-content: center;
-  width: 800px;
-  height: 800px;
+  width: 572px;
+  height: 572px;
+  margin-bottom: 1rem;
 }
 
 
@@ -135,8 +140,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 540px;
-  margin-top: 2rem;
+  width: 450px;
+  margin-top: 1rem;
 }
 .bot-nav h5{
   color: var(--secondary-color3);
@@ -147,8 +152,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 800px;
+  width: 540px;
   margin-top: 2rem;
+  /* margin-bottom: rem; */
 }
 .bot-nav6x6 h5{
   color: var(--secondary-color3);
@@ -159,7 +165,7 @@
   display: flex;
   align-items: center;
   justify-content:space-around ;
-  width: 255px;
+  width: 200px;
   height: 72px;
   background-color: var(--primary-color2);
   border-radius: 10px;
@@ -169,10 +175,11 @@
   display: flex;
   align-items: center;
   justify-content:space-between ;
-  width: 100%;
+  width: 200px;
   height: 72px;
   background-color: var(--primary-color2);
   border-radius: 10px;
+  padding: 0 1rem 0 1rem;
   
 }
 .move-container p,.time-container label{

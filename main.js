@@ -267,20 +267,20 @@ function createFlipCardGrid6x6() {
   
   const bottomNav = document.createElement('div');
   bottomNav.classList.add('bot-nav6x6');
-  bottomNav.innerHTML = `<div class="bot-nav">
-  <div class="time-container">
+  bottomNav.innerHTML = `<div class="bot-nav6x6">
+  <div class="time-container6x6">
     <h5>Time</h5>
     <div class="label">
       <label id="minutes">0</label><label>:</label><label id="seconds">00</label>
     </div>
   </div>
-  <div class="move-container">
+  <div class="move-container6x6">
     <h5>Moves</h5>
     <p class="moves">0</p>
   </div>
 </div>`;
 
-  const numCards = 32;
+  const numCards = 36;
   const container = document.createElement('div');
   container.classList.add('grid-container6x6');
   for (let i = 0; i < numCards; i++) {
