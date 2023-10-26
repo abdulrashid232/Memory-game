@@ -1,3 +1,41 @@
+// function createPlayerElements(numPlayers) {
+//   const pairNav = document.querySelector('.pair-nav');
+//   pairNav.innerHTML = '';
+
+//   for (let i = 1; i <= numPlayers; i++) {
+//     const playerContainer = document.createElement('div');
+//     playerContainer.classList.add('playerContainer');
+
+//     const playerDiv = document.createElement('div');
+//     playerDiv.id = `Player${i}`;
+//     playerDiv.classList.add('pair-container');
+
+//     const playerTitle = document.createElement('h5');
+//     playerTitle.textContent = `Player ${i}`;
+
+//     const pairMatch = document.createElement('p');
+//     pairMatch.classList.add('pairMatch');
+//     pairMatch.textContent = '0';
+
+//     const currentTurn = document.createElement('p');
+//     currentTurn.classList.add('currentTurn');
+//     currentTurn.textContent = 'CURRENT TURN';
+
+//     playerDiv.appendChild(playerTitle);
+//     playerDiv.appendChild(pairMatch);
+
+//     playerContainer.appendChild(playerDiv);
+//     playerContainer.appendChild(currentTurn);
+
+//     pairNav.appendChild(playerContainer);
+//     document.body.appendChild(pairNav);
+//   }
+// }
+
+// createPlayerElements(4);
+
+
+
 const StartBtn = document.querySelector('.btn-start');
 const numbersInput = document.getElementById('numbers');
 const onePlayerInput = document.getElementById('1');
@@ -12,7 +50,6 @@ let pMoves;
 let timerStarted = false;
 let moves = 0;
 let flippedCards = [];
-let currentPlayer = 1;
 
 StartBtn.addEventListener('click', () => {
   if (numbersInput.checked && (onePlayerInput.checked || twoPlayerInput.checked) && (fourByFourInput.checked || sixBysixInput.checked)) {
@@ -54,9 +91,6 @@ function createFlipCardGrid() {
 
   let matchedPairs = 0;
   let timerInterval;
-
-  let playerScores = {};
-  
   
   if(fourByFourInput.checked && onePlayerInput.checked){
     const bottomNav = document.createElement('div');
@@ -280,11 +314,8 @@ flipCards.forEach(card => {
   else if(fourByFourInput.checked && twoPlayerInput.checked){
     const pairNav = document.createElement('div');
     pairNav.classList.add('pair-nav');
-
+    // createPlayerElements;
     const numPlayers = 2;
-    for (let i = 1; i <= numPlayers; i++) {
-      playerScores[`Player${i}`] = 0;
-    }
     for (let i = 1; i <= numPlayers; i++) {
       const playerContainer = document.createElement('div');
       playerContainer.classList.add('playerContainer');
@@ -312,7 +343,7 @@ flipCards.forEach(card => {
   
       pairNav.appendChild(playerContainer);
     }
-    const numCards = 4;
+    const numCards = 16;
     const container = document.createElement('div');
     container.classList.add('grid-container');
     for (let i = 0; i < numCards; i++) {
@@ -370,12 +401,6 @@ flipCards.forEach(card => {
             card2.removeEventListener('click', flipCard);
             markMatched([card1, card2]);
             matchedPairs++;
-
-            // Update the player's score
-            playerScores[`Player${currentPlayer}`]++;
-            updatePlayerScore();
-
-
             if (matchedPairs === numCards / 2) {
               showFun();
             }
@@ -384,23 +409,12 @@ flipCards.forEach(card => {
               unflipCard(card1);
               unflipCard(card2);
             }, 1000);
-            // Switch to the next player's turn
-            currentPlayer = (currentPlayer % numPlayers) + 1;
           }
           flippedCards = [];
         }
       }
     });
   });
-  function updatePlayerScore() {
-    for (let i = 1; i <= numPlayers; i++) {
-      const playerElement = document.getElementById(`Player${i}`);
-      const pairMatch = playerElement.querySelector('.pairMatch');
-      pairMatch.textContent = playerScores[`Player${i}`];
-    }
-  }
-
-  
 
   }
 
@@ -473,7 +487,7 @@ flipCards.forEach(card => {
   }
  
 }
-// Solo popup funtion
+// popup funtion
 
 function createPopup() {
   const popup = document.createElement('div');
@@ -561,7 +575,6 @@ function restartGame() {
     totalMoves = 0;
     totalSeconds = 0;
     pMoves.textContent = '0 Moves';
-    currentPlayer = 1;
   }else if(container6x6) {
     container6x6.remove();
     createFlipCardGrid();
@@ -571,7 +584,6 @@ function restartGame() {
     totalMoves = 0;
     totalSeconds = 0;
     pMoves.textContent = '0 Moves';
-    currentPlayer = 1;
   }
 
 
@@ -608,6 +620,10 @@ function createPlayerElements(numPlayers) {
 
     playerContainer.appendChild(playerDiv);
     playerContainer.appendChild(currentTurn);
+
+
+    // pairNav.appendChild(playerContainer);
+    // document.body.appendChild(pairNav);
     
   }
   

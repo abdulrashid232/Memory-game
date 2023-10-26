@@ -302,3 +302,54 @@
   color: var(--secondary-color3);
   /* top: -3rem; */
  }
+
+ /* multi-player */
+ .playerContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ }
+ .playerContainer p{
+  font-size: 14px;
+  letter-spacing: 5px;
+  font-weight: bold;
+  color: var(--primary-color3);
+  /* display: none; */
+ }
+ .pair-nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 450px; */
+  margin-top: 1rem;
+}
+.pair-nav h5{
+  color: var(--secondary-color3);
+  font-size: 18px;
+  font-family: var(--font-family);
+}
+ .pair-container{
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  margin: 0 2rem 0 2rem;
+  padding: 0 1rem 0 1rem;
+  width: 200px;
+  height: 72px;
+  background-color: var(--primary-color2);
+  border-radius: 10px;
+  
+}
+.pair-container h5{
+  font-size: 18px;
+  font-weight: bold;
+}
+.pair-container p{
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--primary-color3);
+}
+.currentTurn{
+  display: none;
+}
