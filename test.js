@@ -628,3 +628,76 @@ function createPlayerElements(numPlayers) {
   }
   
 }
+
+
+
+ // function MultiPlayercreatePopup() {
+  //   const popup = document.createElement('div');
+  //   popup.className = 'popup';
+  
+  //   const popupContent = document.createElement('div');
+  //   popupContent.className = 'Multi-popup-content';
+  
+  //   const topNote = document.createElement('div');
+  //   topNote.className = 'top-note';
+  
+  //   const h2 = document.createElement('h2');
+  //   h2.textContent = 'Player 2 Win!';
+  
+  //   const p = document.createElement('p');
+  //   p.textContent = "Game Over! Here are the results...";
+  
+  //   topNote.appendChild(h2);
+  //   topNote.appendChild(p);
+  //   popupContent.appendChild(topNote);
+    
+  //   for(i=1; i<= numPlayers;i++){
+  //     const scores = document.createElement('div');
+  //     scores.className = 'scores';
+    
+  //     const player_score = document.createElement('div');
+  //     player_score.className = 'player_score';
+    
+  //     const Winner = document.createElement('h4');
+  //     Winner.textContent = `Player ${i}  (Winner!)`;
+    
+  //     player_score.appendChild(Winner);
+  //     playerPair = document.createElement('p'); 
+  //     playerPair.textContent = '8 pairs';
+  //     player_score.appendChild(playerPair)
+    
+
+  //     scores.appendChild(player_score);
+  //     popupContent.appendChild(scores);
+      
+  //   }
+    
+  
+  //   const popBtn = document.createElement('div');
+  //   popBtn.className = 'popBtn';
+  
+  //   const restartButton = document.createElement('button');
+  //   restartButton.className = 'restart';
+  //   restartButton.textContent = 'Restart';
+  
+  //   restartButton.addEventListener('click', () => {
+  //     restartGame();
+  //   });
+  
+  //   const newGameButton = document.createElement('button');
+  //   newGameButton.className = 'new-game';
+  //   newGameButton.textContent = 'Setup New Game';
+  
+  //   newGameButton.addEventListener('click', () => {
+  //     window.location.href = 'index.html';
+  //   });
+  
+  //   popBtn.appendChild(restartButton);
+  //   popBtn.appendChild(newGameButton);
+  //   popupContent.appendChild(popBtn);
+
+  //   popup.appendChild(popupContent);
+  //   document.body.appendChild(popup);
+  
+    
+  // }
