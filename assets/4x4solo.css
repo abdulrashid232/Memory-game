@@ -24,7 +24,7 @@
   height: 52px;
   justify-content: space-between;
   margin-top: 1rem;
-  margin-bottom:3rem ;
+  margin-bottom:2rem ;
   /* padding:2rem 15rem 2rem 15rem; */
 }
 .header h1{
@@ -125,6 +125,9 @@
 .flip-card-front {
   background-color:var(--primary-color4);
 }
+.flip-card-front:hover{
+  background-color: var(--secondary-color2);
+}
 
 .flip-card-back {
   background-color:var(--primary-color2);
@@ -153,7 +156,7 @@
   align-items: center;
   justify-content: space-between;
   width: 540px;
-  margin-top: 2rem;
+  margin-top: 0.7rem;
   /* margin-bottom: rem; */
 }
 .bot-nav6x6 h5{
@@ -209,7 +212,7 @@
 }
 .popup-content {
   background-color:var(--secondary-color1);
-  margin: 10rem auto;
+  margin: 5rem auto;
   padding: 20px;
   width: 654px;
   height: 510px;

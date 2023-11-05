@@ -153,7 +153,7 @@ flipCards.forEach(card => {
           setTimeout(() => {
             unflipCard(card1);
             unflipCard(card2);
-          }, 1000);
+          }, 500);
         }
 
         moves++;
@@ -263,7 +263,7 @@ flipCards.forEach(card => {
               setTimeout(() => {
                 unflipCard(card1);
                 unflipCard(card2);
-              }, 1000);
+              }, 500);
             }
 
             moves++;
@@ -281,7 +281,7 @@ flipCards.forEach(card => {
     const pairNav = document.createElement('div');
     pairNav.classList.add('pair-nav');
 
-    const numPlayers = 3;
+    const numPlayers = 2;
     for (let i = 1; i <= numPlayers; i++) {
       playerScores[`Player${i}`] = 0;
     }
@@ -312,7 +312,7 @@ flipCards.forEach(card => {
   
       pairNav.appendChild(playerContainer);
     }
-    const numCards = 12;
+    const numCards = 16;
     const container = document.createElement('div');
     container.classList.add('grid-container');
     for (let i = 0; i < numCards; i++) {
@@ -380,14 +380,13 @@ flipCards.forEach(card => {
               MultiPlayercreatePopup()
               const myPopup = document.querySelector('.popup');
               myPopup.classList.add('show');
-              // showFun();
 
             }
           } else {
             setTimeout(() => {
               unflipCard(card1);
               unflipCard(card2);
-            }, 1000);
+            }, 500);
             // Switch to the next player's turn
             currentPlayer = (currentPlayer % numPlayers) + 1;
           }
@@ -396,6 +395,7 @@ flipCards.forEach(card => {
       }
     });
   });
+  
   function updatePlayerScore() {
     for (let i = 1; i <= numPlayers; i++) {
       const playerElement = document.getElementById(`Player${i}`);
@@ -404,97 +404,6 @@ flipCards.forEach(card => {
     }
   }
 
-  // function MultiPlayercreatePopup() {
-  //   const popup = document.createElement('div');
-  //   popup.className = 'popup';
-  
-  //   const popupContent = document.createElement('div');
-  //   popupContent.className = 'Multi-popup-content';
-  
-  //   const topNote = document.createElement('div');
-  //   topNote.className = 'top-note';
-  
-  //   const winner = document.createElement('h4');
-  //   winner.textContent = getWinners();
-  
-  //   const p = document.createElement('p');
-  //   p.textContent = "Game Over! Here are the results...";
-  
-  //   topNote.appendChild(winner);
-  //   topNote.appendChild(p);
-  //   popupContent.appendChild(topNote);
-  
-  //   const playerData = [];
-  //   for (let i = 1; i <= numPlayers; i++) {
-  //     playerData.push({
-  //       player: `Player ${i}`,
-  //       pairs: playerScores[`Player${i}`],
-  //     });
-  //   }
-  
-  //   // Sort playerData based on the number of pairs in descending order
-  //   playerData.sort((a, b) => b.pairs - a.pairs);
-  
-  //   playerData.forEach((data) => {
-  //     const playerContainer = document.createElement('div');
-  //     playerContainer.classList.add('scores');
-  
-  //     const playerDiv = document.createElement('div');
-  //     playerDiv.id = data.player;
-  //     playerDiv.classList.add('player_score');
-  
-  //     const playerTitle = document.createElement('h2');
-  //     const isWinner = winners.includes(data.player) ? ' (Winner)' : '';
-  //     playerTitle.textContent = data.player + isWinner;
-  
-  //     const pairMatch = document.createElement('p');
-  //     pairMatch.classList.add('pairMatch');
-  //     pairMatch.textContent = `${data.pairs} pairs`;
-  
-  //     playerDiv.appendChild(playerTitle);
-  //     playerDiv.appendChild(pairMatch);
-  
-  //     playerContainer.appendChild(playerDiv);
-  //     popupContent.appendChild(playerContainer);
-  //   });
-  
-  //   const popBtn = document.createElement('div');
-  //   popBtn.className = 'popBtn';
-  
-  //   const restartButton = document.createElement('button');
-  //   restartButton.className = 'restart';
-  //   restartButton.textContent = 'Restart';
-  
-  //   restartButton.addEventListener('click', () => {
-  //     restartGame();
-  //   });
-  
-  //   const newGameButton = document.createElement('button');
-  //   newGameButton.className = 'new-game';
-  //   newGameButton.textContent = 'Setup New Game';
-  
-  //   newGameButton.addEventListener('click', () => {
-  //     window.location.href = 'index.html';
-  //   });
-  
-  //   popBtn.appendChild(restartButton);
-  //   popBtn.appendChild(newGameButton);
-  //   popupContent.appendChild(popBtn);
-  
-  //   popup.appendChild(popupContent);
-  //   document.body.appendChild(popup);
-  // }
-  
-  // function getWinners() {
-  //   const maxPairs = Math.max(...Object.values(playerScores));
-  //   const winners = [];
-  //   for (let i = 1; i <= numPlayers; i++) {
-  //     if (playerScores[`Player${i}`] === maxPairs) {
-  //       winners.push(`Player ${i}`);
-  //     }
-  //   }
-  //   return winners;
-  // }
 
   function MultiPlayercreatePopup() {
     const popup = document.createElement('div');
@@ -538,8 +447,8 @@ flipCards.forEach(card => {
       playerDiv.id = data.player;
       playerDiv.classList.add('player_score');
   
-      const playerTitle = document.createElement('h5');
-      const isWinner = winners.includes(data.player) ? ' (Winner)' : '';
+      const playerTitle = document.createElement('h4');
+      const isWinner = winners.includes(data.player) ? ' (Winner!)' : '';
       playerTitle.textContent = data.player + isWinner;
   
       const pairMatch = document.createElement('p');
@@ -628,8 +537,8 @@ flipCards.forEach(card => {
   }
 
   function updateMovesDisplay() {
-    totalMoves = moves; // Update the global totalMoves variable
-    pMoves.textContent = `${totalMoves} Moves`; // Update the global pMoves element
+    totalMoves = moves; 
+    pMoves.textContent = `${totalMoves} Moves`;
     const movesDisplay = document.querySelector('.moves');
     movesDisplay.textContent = totalMoves;
   }
