@@ -74,7 +74,7 @@ function createFlipCardGrid() {
     </div>
   </div>`;
 
-  const numCards = 16;
+  const numCards = 4;
   const container = document.createElement('div');
   container.classList.add('grid-container');
   for (let i = 0; i < numCards; i++) {
@@ -532,11 +532,11 @@ flipCards.forEach(card => {
   
     playerData.forEach((data) => {
       const playerContainer = document.createElement('div');
-      playerContainer.classList.add('playerContainer');
+      playerContainer.classList.add('multiPlayerScores');
   
       const playerDiv = document.createElement('div');
       playerDiv.id = data.player;
-      playerDiv.classList.add('pair-container');
+      playerDiv.classList.add('player_score');
   
       const playerTitle = document.createElement('h5');
       const isWinner = winners.includes(data.player) ? ' (Winner)' : '';
