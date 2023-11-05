@@ -115,3 +115,45 @@ input[type="radio"]:checked + .button-text {
 .btn.start:hover{
   background-color: #f8ac32
 }
+
+
+ /* media queries */
+
+ @media  only screen and (max-width:480px) {
+  .main-container{
+    width: 350px;
+    height:450px;
+  }
+  .card{
+    width: 320px;
+  }
+  .card h4{
+    color: var(--primary-color2);
+    margin-left: 10px;
+    font-size: 18px;
+  }
+  .btn-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+  .radio-button.theme{
+    width: 150px;
+    height: 52px;
+  }
+  .radio-button.players{
+    width: 60px;
+    height: 52px;
+  }
+  .radio-button.grid{
+    width: 150px;
+    height: 52px;
+  }
+  .btn-start{
+    width: 320px;
+    height: 70px;
+    margin: 2rem 0;
+   
+  }
+  
+ }
