@@ -1,6 +1,9 @@
 const StartBtn = document.querySelector('.btn-start');
 const numbersInput = document.getElementById('numbers');
 const onePlayerInput = document.getElementById('1');
+const twoPlayerInput = document.getElementById('2');
+const threePlayerInput = document.getElementById('3');
+const fourPlayerInput = document.getElementById('4');
 const fourByFourInput = document.getElementById('4x4');
 const sixBysixInput = document.getElementById('6x6');
 let totalMoves = 0; 
@@ -9,9 +12,10 @@ let pMoves;
 let timerStarted = false;
 let moves = 0;
 let flippedCards = [];
+let currentPlayer = 1;
 
 StartBtn.addEventListener('click', () => {
-  if (numbersInput.checked && onePlayerInput.checked && (fourByFourInput.checked || sixBysixInput.checked)) {
+  if (numbersInput.checked && (onePlayerInput.checked || twoPlayerInput.checked) && (fourByFourInput.checked || sixBysixInput.checked)) {
     createFlipCardGrid();
   }
    else  {
@@ -50,8 +54,11 @@ function createFlipCardGrid() {
 
   let matchedPairs = 0;
   let timerInterval;
+
+  let playerScores = {};
   
-  if(fourByFourInput.checked){
+  
+  if(fourByFourInput.checked && onePlayerInput.checked){
     const bottomNav = document.createElement('div');
     bottomNav.classList.add('bot-nav');
     bottomNav.innerHTML = `<div class="bot-nav">
@@ -67,7 +74,7 @@ function createFlipCardGrid() {
     </div>
   </div>`;
 
-  const numCards = 16;
+  const numCards = 4;
   const container = document.createElement('div');
   container.classList.add('grid-container');
   for (let i = 0; i < numCards; i++) {
@@ -100,7 +107,6 @@ function createFlipCardGrid() {
     
   }
 
-    // Create an array of pairs of numbers
   const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
   const shuffledPairs = shuffleArray([...pairs, ...pairs]);
 
@@ -109,7 +115,6 @@ function createFlipCardGrid() {
     h1.textContent = shuffledPairs[index];
   });
 
-// Flipcard event-listener
 const flipCards = document.querySelectorAll('.flip-card');
 flipCards.forEach(card => {
   card.addEventListener('click', () => {
@@ -128,13 +133,11 @@ flipCards.forEach(card => {
         const h1Element2 = card2.querySelector('h1');
 
         if (h1Element1.textContent === h1Element2.textContent) {
-          // Matched cards, keep them flipped
           card1.removeEventListener('click', flipCard);
           card2.removeEventListener('click', flipCard);
           markMatched([card1, card2]);
           matchedPairs++;
           if (matchedPairs === numCards / 2) {
-            // All pairs are matched, stop the timer
             clearInterval(timerInterval);
 
             const timeTaken = `${minutesLabel.textContent}:${secondsLabel.textContent}`;
@@ -147,11 +150,10 @@ flipCards.forEach(card => {
             showFun();
           }
         } else {
-          // Unmatched cards, unflip them after a delay
           setTimeout(() => {
             unflipCard(card1);
             unflipCard(card2);
-          }, 1000);
+          }, 500);
         }
 
         moves++;
@@ -163,7 +165,7 @@ flipCards.forEach(card => {
 });
 
   }
-  else if(sixBysixInput.checked){
+  else if(sixBysixInput.checked && onePlayerInput.checked){
     const bottomNav = document.createElement('div');
     bottomNav.classList.add('bot-nav6x6');
     bottomNav.innerHTML = `<div class="bot-nav6x6">
@@ -261,7 +263,7 @@ flipCards.forEach(card => {
               setTimeout(() => {
                 unflipCard(card1);
                 unflipCard(card2);
-              }, 1000);
+              }, 500);
             }
 
             moves++;
@@ -272,6 +274,230 @@ flipCards.forEach(card => {
       });
     });
    
+
+
+  }
+  else if(fourByFourInput.checked && twoPlayerInput.checked){
+    const pairNav = document.createElement('div');
+    pairNav.classList.add('pair-nav');
+
+    const numPlayers = 2;
+    for (let i = 1; i <= numPlayers; i++) {
+      playerScores[`Player${i}`] = 0;
+    }
+    for (let i = 1; i <= numPlayers; i++) {
+      const playerContainer = document.createElement('div');
+      playerContainer.classList.add('playerContainer');
+  
+      const playerDiv = document.createElement('div');
+      playerDiv.id = `Player${i}`;
+      playerDiv.classList.add('pair-container');
+  
+      const playerTitle = document.createElement('h5');
+      playerTitle.textContent = `Player ${i}`;
+  
+      const pairMatch = document.createElement('p');
+      pairMatch.classList.add('pairMatch');
+      pairMatch.textContent = '0';
+  
+      const currentTurn = document.createElement('p');
+      currentTurn.classList.add('currentTurn');
+      currentTurn.textContent = 'CURRENT TURN';
+  
+      playerDiv.appendChild(playerTitle);
+      playerDiv.appendChild(pairMatch);
+  
+      playerContainer.appendChild(playerDiv);
+      playerContainer.appendChild(currentTurn);
+  
+      pairNav.appendChild(playerContainer);
+    }
+    const numCards = 16;
+    const container = document.createElement('div');
+    container.classList.add('grid-container');
+    for (let i = 0; i < numCards; i++) {
+      const flipCard = document.createElement('div');
+      flipCard.classList.add('flip-card');
+
+      const flipCardInner = document.createElement('div');
+      flipCardInner.classList.add('flip-card-inner');
+
+      const flipCardFront = document.createElement('div');
+      flipCardFront.classList.add('flip-card-front');
+
+      const flipCardBack = document.createElement('div');
+      flipCardBack.classList.add('flip-card-back');
+
+      const h1 = document.createElement('h1');
+      h1.textContent = '';
+
+      flipCardBack.appendChild(h1);
+      flipCardInner.appendChild(flipCardFront);
+      flipCardInner.appendChild(flipCardBack);
+      flipCard.appendChild(flipCardInner);
+
+      container.appendChild(flipCard);
+      document.body.innerHTML = '';
+      document.body.style.backgroundColor = '#fcfcfc';
+      document.body.appendChild(header);
+      document.body.appendChild(container);
+      document.body.appendChild(pairNav);
+      
+    }
+
+    const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+    const shuffledPairs = shuffleArray([...pairs, ...pairs]);
+
+    const h1Elements = document.querySelectorAll('.flip-card h1');
+    h1Elements.forEach((h1, index) => {
+      h1.textContent = shuffledPairs[index];
+    });
+
+  const flipCards = document.querySelectorAll('.flip-card');
+  flipCards.forEach(card => {
+    card.addEventListener('click', () => {
+      if (!card.classList.contains('flipped') && flippedCards.length < 2) {
+        flipCard(card);
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+          const [card1, card2] = flippedCards;
+          const h1Element1 = card1.querySelector('h1');
+          const h1Element2 = card2.querySelector('h1');
+
+          if (h1Element1.textContent === h1Element2.textContent) {
+            card1.removeEventListener('click', flipCard);
+            card2.removeEventListener('click', flipCard);
+            markMatched([card1, card2]);
+            matchedPairs++;
+
+            // Update the player's score
+            playerScores[`Player${currentPlayer}`]++;
+            updatePlayerScore();
+
+
+            if (matchedPairs === numCards / 2) {
+              MultiPlayercreatePopup()
+              const myPopup = document.querySelector('.popup');
+              myPopup.classList.add('show');
+
+            }
+          } else {
+            setTimeout(() => {
+              unflipCard(card1);
+              unflipCard(card2);
+            }, 500);
+            // Switch to the next player's turn
+            currentPlayer = (currentPlayer % numPlayers) + 1;
+          }
+          flippedCards = [];
+        }
+      }
+    });
+  });
+  
+  function updatePlayerScore() {
+    for (let i = 1; i <= numPlayers; i++) {
+      const playerElement = document.getElementById(`Player${i}`);
+      const pairMatch = playerElement.querySelector('.pairMatch');
+      pairMatch.textContent = playerScores[`Player${i}`];
+    }
+  }
+
+
+  function MultiPlayercreatePopup() {
+    const popup = document.createElement('div');
+    popup.className = 'popup';
+  
+    const popupContent = document.createElement('div');
+    popupContent.className = 'Multi-popup-content';
+  
+    const topNote = document.createElement('div');
+    topNote.className = 'top-note';
+  
+    const winners = getWinners();
+    const winnerText = winners.length > 1 ? 'Winners' : 'Winner';
+  
+    const winner = document.createElement('h2');
+    winner.textContent = `${winners.join(', ')} ${winnerText}`;
+  
+    const p = document.createElement('p');
+    p.textContent = "Game Over! Here are the results...";
+  
+    topNote.appendChild(winner);
+    topNote.appendChild(p);
+    popupContent.appendChild(topNote);
+  
+    const playerData = [];
+    for (let i = 1; i <= numPlayers; i++) {
+      playerData.push({
+        player: `Player ${i}`,
+        pairs: playerScores[`Player${i}`],
+      });
+    }
+  
+    // Sort playerData based on the number of pairs in descending order
+    playerData.sort((a, b) => b.pairs - a.pairs);
+  
+    playerData.forEach((data) => {
+      const playerContainer = document.createElement('div');
+      playerContainer.classList.add('multiPlayerScores');
+  
+      const playerDiv = document.createElement('div');
+      playerDiv.id = data.player;
+      playerDiv.classList.add('player_score');
+  
+      const playerTitle = document.createElement('h4');
+      const isWinner = winners.includes(data.player) ? ' (Winner!)' : '';
+      playerTitle.textContent = data.player + isWinner;
+  
+      const pairMatch = document.createElement('p');
+      pairMatch.classList.add('pairMatch');
+      pairMatch.textContent = `${data.pairs} pairs`;
+  
+      playerDiv.appendChild(playerTitle);
+      playerDiv.appendChild(pairMatch);
+  
+      playerContainer.appendChild(playerDiv);
+      popupContent.appendChild(playerContainer);
+    });
+  
+    const popBtn = document.createElement('div');
+    popBtn.className = 'popBtn';
+  
+    const restartButton = document.createElement('button');
+    restartButton.className = 'restart';
+    restartButton.textContent = 'Restart';
+  
+    restartButton.addEventListener('click', restartGame)
+  
+    const newGameButton = document.createElement('button');
+    newGameButton.className = 'new-game';
+    newGameButton.textContent = 'Setup New Game';
+  
+    newGameButton.addEventListener('click',() => {
+      window.location.href = 'index.html';
+    });
+  
+    popBtn.appendChild(restartButton);
+    popBtn.appendChild(newGameButton);
+    popupContent.appendChild(popBtn);
+  
+    popup.appendChild(popupContent);
+    document.body.appendChild(popup);
+  }
+  
+  function getWinners() {
+    const maxPairs = Math.max(...Object.values(playerScores));
+    const winners = [];
+    for (let i = 1; i <= numPlayers; i++) {
+      if (playerScores[`Player${i}`] === maxPairs) {
+        winners.push(`Player ${i}`);
+      }
+    }
+    return winners;
+  }
+  
 
 
   }
@@ -311,8 +537,8 @@ flipCards.forEach(card => {
   }
 
   function updateMovesDisplay() {
-    totalMoves = moves; // Update the global totalMoves variable
-    pMoves.textContent = `${totalMoves} Moves`; // Update the global pMoves element
+    totalMoves = moves; 
+    pMoves.textContent = `${totalMoves} Moves`;
     const movesDisplay = document.querySelector('.moves');
     movesDisplay.textContent = totalMoves;
   }
@@ -345,7 +571,7 @@ flipCards.forEach(card => {
   }
  
 }
-// popup funtion
+// Solo popup funtion
 
 function createPopup() {
   const popup = document.createElement('div');
@@ -433,6 +659,7 @@ function restartGame() {
     totalMoves = 0;
     totalSeconds = 0;
     pMoves.textContent = '0 Moves';
+    currentPlayer = 1;
   }else if(container6x6) {
     container6x6.remove();
     createFlipCardGrid();
@@ -442,6 +669,7 @@ function restartGame() {
     totalMoves = 0;
     totalSeconds = 0;
     pMoves.textContent = '0 Moves';
+    currentPlayer = 1;
   }
 
 
@@ -450,4 +678,35 @@ function showFun() {
   createPopup();
   const myPopup = document.querySelector('.popup');
   myPopup.classList.add('show');
+}
+
+
+function createPlayerElements(numPlayers) {
+  for (let i = 1; i <= numPlayers; i++) {
+    const playerContainer = document.createElement('div');
+    playerContainer.classList.add('playerContainer');
+
+    const playerDiv = document.createElement('div');
+    playerDiv.id = `Player${i}`;
+    playerDiv.classList.add('pair-container');
+
+    const playerTitle = document.createElement('h5');
+    playerTitle.textContent = `Player ${i}`;
+
+    const pairMatch = document.createElement('p');
+    pairMatch.classList.add('pairMatch');
+    pairMatch.textContent = '0';
+
+    const currentTurn = document.createElement('p');
+    currentTurn.classList.add('currentTurn');
+    currentTurn.textContent = 'CURRENT TURN';
+
+    playerDiv.appendChild(playerTitle);
+    playerDiv.appendChild(pairMatch);
+
+    playerContainer.appendChild(playerDiv);
+    playerContainer.appendChild(currentTurn);
+    
+  }
+  
 }
