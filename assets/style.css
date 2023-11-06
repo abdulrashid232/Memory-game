@@ -115,6 +115,64 @@ input[type="radio"]:checked + .button-text {
 .btn.start:hover{
   background-color: #f8ac32
 }
+/* mobile size menu */
+.overlay {
+  height: 100vh;
+  margin: auto 0;
+  width: 0;
+  display: none;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(70, 68, 68, 0.9);
+  overflow: hidden;
+  /* transition: 0.5s; */
+}
+
+.overlay-content {
+  /* background-color: red; */
+  width: 327px;
+  height: 250px;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 10px;
+  background-color: var(--secondary-color1);
+}
+.overlay-content>button{
+  width: 264px;
+  height: 52px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+ }
+ .overlay-content>.restart{
+  color: var(--secondary-color1);
+  background-color: var(--primary-color1);
+ }
+ .overlay-content>.new-game , .resume{
+  color: var(--primary-color3);
+  background-color: var(--primary-color5);
+ }
+ .mobileBtn{
+  width: 78px;
+  height: 40px;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-size: 16px;
+  background-color: var(--primary-color1);
+  display: none;
+ }
+
 
 
  /* media queries */
@@ -142,7 +200,7 @@ input[type="radio"]:checked + .button-text {
     height: 52px;
   }
   .radio-button.players{
-    width: 60px;
+    width: 70px;
     height: 52px;
   }
   .radio-button.grid{
@@ -151,9 +209,17 @@ input[type="radio"]:checked + .button-text {
   }
   .btn-start{
     width: 320px;
-    height: 70px;
+    height: 80px;
+    padding: 20px 0;
     margin: 2rem 0;
+    font-size: 20px;
    
+  }
+  .btn-restart, .btn-newGame{
+    display: none;
+  }
+  .mobileBtn{
+    display: block;
   }
   
  }

@@ -33,7 +33,16 @@ function createFlipCardGrid() {
   header.appendChild(logo);
   const topNav = document.createElement('div');
   topNav.classList.add('top-nav');
+  const menu = document.createElement('button');
+  menu.textContent = 'Menu'
+  menu.className = 'mobileBtn';
   header.appendChild(topNav);
+  header.appendChild(menu);
+  menu.addEventListener('click', () => {
+    mobileMenu()
+    const  myNav = document.getElementById('myNav').style.width = '100%';
+
+  });
 
   const restartBtn = document.createElement('button');
   restartBtn.className = 'btn-restart';
@@ -74,7 +83,7 @@ function createFlipCardGrid() {
     </div>
   </div>`;
 
-  const numCards = 4;
+  const numCards = 16;
   const container = document.createElement('div');
   container.classList.add('grid-container');
   for (let i = 0; i < numCards; i++) {
@@ -416,10 +425,10 @@ flipCards.forEach(card => {
     topNote.className = 'top-note';
   
     const winners = getWinners();
-    const winnerText = winners.length > 1 ? 'Winners' : 'Winner';
+    const winnerText = winners.length > 1 ? "It's a tie" : 'Wins';
   
     const winner = document.createElement('h2');
-    winner.textContent = `${winners.join(', ')} ${winnerText}`;
+    winner.textContent =  winners.length > 1 ? `${winners.join(', ')} ${winnerText}`:`${winnerText}`;
   
     const p = document.createElement('p');
     p.textContent = "Game Over! Here are the results...";
@@ -571,6 +580,8 @@ flipCards.forEach(card => {
   }
  
 }
+
+
 // Solo popup funtion
 
 function createPopup() {
@@ -599,7 +610,7 @@ function createPopup() {
   timeBox.className = 'timeBox';
 
   const h4Time = document.createElement('h4');
-  h4Time.textContent = 'Time';
+  h4Time.textContent = 'Time Elapsed';
 
   timeBox.appendChild(h4Time);
   timeBox.appendChild(pTime);
@@ -709,4 +720,39 @@ function createPlayerElements(numPlayers) {
     
   }
   
+}
+
+function mobileMenu(){
+  const overlayDiv = document.createElement('div');
+  overlayDiv.setAttribute('id', 'myNav');
+  overlayDiv.classList.add('overlay');
+
+  const overlayContentDiv = document.createElement('div');
+  overlayContentDiv.classList.add('overlay-content');
+
+  const restartButton = document.createElement('button');
+  restartButton.classList.add('restart');
+  restartButton.textContent = 'Restart';
+
+  restartButton.addEventListener('click', function() {
+    restartGame();
+    console.log('hello');
+  });
+
+  const newGameButton = document.createElement('button');
+  newGameButton.classList.add('new-game');
+  newGameButton.textContent = 'New Game';
+
+  const resumeButton = document.createElement('button');
+  resumeButton.classList.add('resume');
+  resumeButton.textContent = 'Resume Game';
+
+
+  overlayContentDiv.appendChild(restartButton);
+  overlayContentDiv.appendChild(newGameButton);
+  overlayContentDiv.appendChild(resumeButton);
+
+  overlayDiv.appendChild(overlayContentDiv);
+  document.body.appendChild(overlayDiv);
+
 }
