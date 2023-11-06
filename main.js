@@ -40,7 +40,7 @@ function createFlipCardGrid() {
   header.appendChild(menu);
   menu.addEventListener('click', () => {
     mobileMenu()
-    const  myNav = document.getElementById('myNav').style.width = '100%';
+    document.getElementById('myNav').style.width = '100%';
 
   });
 
@@ -425,10 +425,10 @@ flipCards.forEach(card => {
     topNote.className = 'top-note';
   
     const winners = getWinners();
-    const winnerText = winners.length > 1 ? "It's a tie" : 'Wins';
+    const winnerText = winners.length > 1 ? 'Winners' : 'Winner';
   
     const winner = document.createElement('h2');
-    winner.textContent =  winners.length > 1 ? `${winners.join(', ')} ${winnerText}`:`${winnerText}`;
+    winner.textContent = `${winners.join(', ')} ${winnerText}`;
   
     const p = document.createElement('p');
     p.textContent = "Game Over! Here are the results...";
@@ -736,12 +736,14 @@ function mobileMenu(){
 
   restartButton.addEventListener('click', function() {
     restartGame();
-    console.log('hello');
   });
 
   const newGameButton = document.createElement('button');
   newGameButton.classList.add('new-game');
   newGameButton.textContent = 'New Game';
+  newGameButton.addEventListener('click', function() {
+    window.location.href = 'index.html';
+  });
 
   const resumeButton = document.createElement('button');
   resumeButton.classList.add('resume');

@@ -40,7 +40,7 @@ function createFlipCardGrid() {
   header.appendChild(menu);
   menu.addEventListener('click', () => {
     mobileMenu()
-    const  myNav = document.getElementById('myNav').style.width = '100%';
+    document.getElementById('myNav').style.width = '100%';
 
   });
 
@@ -736,12 +736,14 @@ function mobileMenu(){
 
   restartButton.addEventListener('click', function() {
     restartGame();
-    console.log('hello');
   });
 
   const newGameButton = document.createElement('button');
   newGameButton.classList.add('new-game');
   newGameButton.textContent = 'New Game';
+  newGameButton.addEventListener('click', function() {
+    window.location.href = 'index.html';
+  });
 
   const resumeButton = document.createElement('button');
   resumeButton.classList.add('resume');
