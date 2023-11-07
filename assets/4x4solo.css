@@ -319,7 +319,7 @@
   font-size: 18px;
   font-family: var(--font-family);
 }
- .pair-container{
+.pair-container{
   display: flex;
   align-items: center;
   justify-content:space-between;
@@ -334,6 +334,9 @@
 .pair-container h5{
   font-size: 18px;
   font-weight: bold;
+}
+.sm-screen{
+  display: none;
 }
 .pair-container p{
   font-size: 30px;
@@ -398,7 +401,7 @@
 
  /* media queries */
 
- @media  only screen and (max-width:480px) {
+@media  only screen and (max-width:480px) {
   .grid-container{
     grid-template-columns: repeat(4, 25%);
     width: 350px;
@@ -438,7 +441,7 @@
     flex-direction: column;
     width: 150px;
     height: 80px;
- 
+
   }
   .move-container6x6,.time-container6x6{
     display: flex;
@@ -450,11 +453,11 @@
     
   }
   .bot-nav h5{
-   margin: 0;
+    margin: 0;
   }
   .bot-nav6x6 h5{
     margin: 0;
-   }
+    }
   .move-container p,.time-container label{
     color: var(--primary-color3);
     font-size: 32px;
@@ -498,12 +501,12 @@
     color: var(--secondary-color3);
     font-size: 16px;
     font-weight: bold;
-   }
-   .timeBox>p,.movesBox>p{
-     margin:0;
-     color: var(--primary-color3);
-     font-size: 18px;
-     font-weight: bold;
+    }
+    .timeBox>p,.movesBox>p{
+      margin:0;
+      color: var(--primary-color3);
+      font-size: 18px;
+      font-weight: bold;
     }
     .popBtn{
       margin: 0;
@@ -512,8 +515,8 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-     }
-     .popBtn>button{
+      }
+      .popBtn>button{
       width: 100%;
       height: 55px;
       font-size: 20px;
@@ -521,9 +524,88 @@
       border-radius: 50px;
       border: none;
       cursor: pointer;
-     }
-     /* .restart{
-      margin-bottom: 5rem;
-     } */
+      }
+    
 
+  /* multi-player */
+  .pair-nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 350px;
+  margin-top: 5rem;
+  }
+  .playerContainer{
+  width: 70px;
+  height: 70px;
+  display: flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items: center;
+  }
+  .playerContainer p{
+  font-size: 20px;
+  /* display: none; */
+  }
+
+  .playerContainer h5{
+  font-size: 20px;
+  }
+  .pair-container{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+    margin: 0 2rem 0 2rem;
+    padding: 0 1rem 0 1rem;
+    width: 100%;
+    height: 70px;
+    background-color: var(--primary-color2);
+    border-radius: 10px;
+    
+  }
+  .lg-screen{
+  display: none;
+  }
+  .sm-screen{
+  display: block;
+  margin: 1.5rem 0 0 0;
+  padding: 0;
+  }
+
+  /* Multiplayer */
+  .Multi-popup-content {
+  width: 327px;
+  height: 488px;
+  }
+
+  .multiPlayerScores{
+  width: 279px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+  .player_score{
+  display: flex;
+  align-items: center;
+  justify-content:none;
+  width: 300px;
+  height: 72px;
+  }
+  .player_score>h4{
+  margin: 0 0 0 1rem;
+  color: var(--secondary-color3);
+  font-size: 18px;
+  font-weight: bold;
+  }
+  .player_score>p{
+    margin: 0 1rem 0 0;
+    color: var(--primary-color3);
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .pairMatch{
+    font-size: 70px;
+  }
  }

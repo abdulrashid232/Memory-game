@@ -303,7 +303,12 @@ flipCards.forEach(card => {
       playerDiv.classList.add('pair-container');
   
       const playerTitle = document.createElement('h5');
+      playerTitle.classList.add('lg-screen');
       playerTitle.textContent = `Player ${i}`;
+
+      const playerTitleSmall = document.createElement('h5');
+      playerTitleSmall.classList.add('sm-screen');
+      playerTitleSmall.textContent = `P${i}`;
   
       const pairMatch = document.createElement('p');
       pairMatch.classList.add('pairMatch');
@@ -314,6 +319,7 @@ flipCards.forEach(card => {
       currentTurn.textContent = 'CURRENT TURN';
   
       playerDiv.appendChild(playerTitle);
+      playerDiv.appendChild(playerTitleSmall);
       playerDiv.appendChild(pairMatch);
   
       playerContainer.appendChild(playerDiv);
@@ -321,7 +327,7 @@ flipCards.forEach(card => {
   
       pairNav.appendChild(playerContainer);
     }
-    const numCards = 16;
+    const numCards = 4;
     const container = document.createElement('div');
     container.classList.add('grid-container');
     for (let i = 0; i < numCards; i++) {
@@ -445,7 +451,6 @@ flipCards.forEach(card => {
       });
     }
   
-    // Sort playerData based on the number of pairs in descending order
     playerData.sort((a, b) => b.pairs - a.pairs);
   
     playerData.forEach((data) => {
@@ -692,35 +697,35 @@ function showFun() {
 }
 
 
-function createPlayerElements(numPlayers) {
-  for (let i = 1; i <= numPlayers; i++) {
-    const playerContainer = document.createElement('div');
-    playerContainer.classList.add('playerContainer');
+// function createPlayerElements(numPlayers) {
+//   for (let i = 1; i <= numPlayers; i++) {
+//     const playerContainer = document.createElement('div');
+//     playerContainer.classList.add('playerContainer');
 
-    const playerDiv = document.createElement('div');
-    playerDiv.id = `Player${i}`;
-    playerDiv.classList.add('pair-container');
+//     const playerDiv = document.createElement('div');
+//     playerDiv.id = `Player${i}`;
+//     playerDiv.classList.add('pair-container');
 
-    const playerTitle = document.createElement('h5');
-    playerTitle.textContent = `Player ${i}`;
+//     const playerTitle = document.createElement('h5');
+//     playerTitle.textContent = `Player ${i}`;
 
-    const pairMatch = document.createElement('p');
-    pairMatch.classList.add('pairMatch');
-    pairMatch.textContent = '0';
+//     const pairMatch = document.createElement('p');
+//     pairMatch.classList.add('pairMatch');
+//     pairMatch.textContent = '0';
 
-    const currentTurn = document.createElement('p');
-    currentTurn.classList.add('currentTurn');
-    currentTurn.textContent = 'CURRENT TURN';
+//     const currentTurn = document.createElement('p');
+//     currentTurn.classList.add('currentTurn');
+//     currentTurn.textContent = 'CURRENT TURN';
 
-    playerDiv.appendChild(playerTitle);
-    playerDiv.appendChild(pairMatch);
+//     playerDiv.appendChild(playerTitle);
+//     playerDiv.appendChild(pairMatch);
 
-    playerContainer.appendChild(playerDiv);
-    playerContainer.appendChild(currentTurn);
+//     playerContainer.appendChild(playerDiv);
+//     playerContainer.appendChild(currentTurn);
     
-  }
+//   }
   
-}
+// }
 
 function mobileMenu(){
   const overlayDiv = document.createElement('div');
