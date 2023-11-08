@@ -13,6 +13,8 @@ let timerStarted = false;
 let moves = 0;
 let flippedCards = [];
 let currentPlayer = 1;
+let isPaused = false;
+let totalSeconds = 0;
 
 StartBtn.addEventListener('click', () => {
   if (numbersInput.checked && (onePlayerInput.checked || twoPlayerInput.checked) && (fourByFourInput.checked || sixBysixInput.checked)) {
@@ -39,6 +41,7 @@ function createFlipCardGrid() {
   header.appendChild(topNav);
   header.appendChild(menu);
   menu.addEventListener('click', () => {
+    pauseTimer();
     mobileMenu()
     document.getElementById('myNav').style.width = '100%';
 
@@ -567,7 +570,7 @@ flipCards.forEach(card => {
 
   let minutesLabel = document.getElementById("minutes");
   let secondsLabel = document.getElementById("seconds");
-  let totalSeconds = 0;
+  
 
   function setTime() {
     ++totalSeconds;
@@ -583,8 +586,15 @@ flipCards.forEach(card => {
       return valString;
     }
   }
+  function pauseTimer() {
+    if (timerStarted) {
+        timerStarted = false;
+        clearInterval(timerInterval);
+    }
+  }
  
 }
+
 
 
 // Solo popup funtion
@@ -697,36 +707,6 @@ function showFun() {
 }
 
 
-// function createPlayerElements(numPlayers) {
-//   for (let i = 1; i <= numPlayers; i++) {
-//     const playerContainer = document.createElement('div');
-//     playerContainer.classList.add('playerContainer');
-
-//     const playerDiv = document.createElement('div');
-//     playerDiv.id = `Player${i}`;
-//     playerDiv.classList.add('pair-container');
-
-//     const playerTitle = document.createElement('h5');
-//     playerTitle.textContent = `Player ${i}`;
-
-//     const pairMatch = document.createElement('p');
-//     pairMatch.classList.add('pairMatch');
-//     pairMatch.textContent = '0';
-
-//     const currentTurn = document.createElement('p');
-//     currentTurn.classList.add('currentTurn');
-//     currentTurn.textContent = 'CURRENT TURN';
-
-//     playerDiv.appendChild(playerTitle);
-//     playerDiv.appendChild(pairMatch);
-
-//     playerContainer.appendChild(playerDiv);
-//     playerContainer.appendChild(currentTurn);
-    
-//   }
-  
-// }
-
 function mobileMenu(){
   const overlayDiv = document.createElement('div');
   overlayDiv.setAttribute('id', 'myNav');
@@ -740,7 +720,7 @@ function mobileMenu(){
   restartButton.textContent = 'Restart';
 
   restartButton.addEventListener('click', function() {
-    restartGame();
+    restartGame();   
   });
 
   const newGameButton = document.createElement('button');
@@ -753,6 +733,17 @@ function mobileMenu(){
   const resumeButton = document.createElement('button');
   resumeButton.classList.add('resume');
   resumeButton.textContent = 'Resume Game';
+  resumeButton.addEventListener('click', function() {
+    document.getElementById('myNav').style.width = '0';
+    // if (!timerStarted) {
+    //   timerStarted = true;
+    //   timerInterval = setInterval(setTime, 1000);
+    // }
+  //   if (!timerStarted) {
+  //     timerStarted = true;
+  //     ++totalSeconds;
+  // }
+  });
 
 
   overlayContentDiv.appendChild(restartButton);
