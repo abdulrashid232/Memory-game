@@ -17,7 +17,7 @@ let isPaused = false;
 let totalSeconds = 0;
 
 StartBtn.addEventListener('click', () => {
-  if (numbersInput.checked && (onePlayerInput.checked || twoPlayerInput.checked) && (fourByFourInput.checked || sixBysixInput.checked)) {
+  if (numbersInput.checked && (onePlayerInput.checked || twoPlayerInput.checked || threePlayerInput|| fourPlayerInput.checked) && (fourByFourInput.checked || sixBysixInput.checked)) {
     createFlipCardGrid();
   }
    else  {
@@ -289,11 +289,18 @@ flipCards.forEach(card => {
 
 
   }
-  else if(fourByFourInput.checked && twoPlayerInput.checked){
+  else if(fourByFourInput.checked && (twoPlayerInput.checked || threePlayerInput|| fourPlayerInput.checked)){
     const pairNav = document.createElement('div');
     pairNav.classList.add('pair-nav');
-
-    const numPlayers = 2;
+    
+    let numPlayers;
+    if (twoPlayerInput.checked) {
+        numPlayers = 2;
+    } else if (threePlayerInput.checked) {
+        numPlayers = 3;
+    } else if(fourPlayerInput.checked) {
+        numPlayers = 4;
+    }
     for (let i = 1; i <= numPlayers; i++) {
       playerScores[`Player${i}`] = 0;
     }
