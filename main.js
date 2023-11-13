@@ -1,5 +1,6 @@
 const StartBtn = document.querySelector('.btn-start');
 const numbersInput = document.getElementById('numbers');
+const iconsInput = document.getElementById('icons');
 const onePlayerInput = document.getElementById('1');
 const twoPlayerInput = document.getElementById('2');
 const threePlayerInput = document.getElementById('3');
@@ -70,229 +71,226 @@ function createFlipCardGrid() {
   let playerScores = {};
   
   
-  if(fourByFourInput.checked && onePlayerInput.checked){
-    const bottomNav = document.createElement('div');
-    bottomNav.classList.add('bot-nav');
-    bottomNav.innerHTML = `<div class="bot-nav">
-    <div class="time-container">
-      <h5>Time</h5>
-      <div class="label">
-        <label id="minutes">0</label><label>:</label><label id="seconds">00</label>
+  if((fourByFourInput.checked || sixBysixInput.checked) && onePlayerInput.checked){
+    if(fourByFourInput.checked){
+      const bottomNav = document.createElement('div');
+      bottomNav.classList.add('bot-nav');
+      bottomNav.innerHTML = `<div class="bot-nav">
+      <div class="time-container">
+        <h5>Time</h5>
+        <div class="label">
+          <label id="minutes">0</label><label>:</label><label id="seconds">00</label>
+        </div>
       </div>
-    </div>
-    <div class="move-container">
-      <h5>Moves</h5>
-      <p class="moves">0</p>
-    </div>
-  </div>`;
-
-  const numCards = 16;
-  const container = document.createElement('div');
-  container.classList.add('grid-container');
-  for (let i = 0; i < numCards; i++) {
-    const flipCard = document.createElement('div');
-    flipCard.classList.add('flip-card');
-
-    const flipCardInner = document.createElement('div');
-    flipCardInner.classList.add('flip-card-inner');
-
-    const flipCardFront = document.createElement('div');
-    flipCardFront.classList.add('flip-card-front');
-
-    const flipCardBack = document.createElement('div');
-    flipCardBack.classList.add('flip-card-back');
-
-    const h1 = document.createElement('h1');
-    h1.textContent = '';
-
-    flipCardBack.appendChild(h1);
-    flipCardInner.appendChild(flipCardFront);
-    flipCardInner.appendChild(flipCardBack);
-    flipCard.appendChild(flipCardInner);
-
-    container.appendChild(flipCard);
-    document.body.innerHTML = '';
-    document.body.style.backgroundColor = '#fcfcfc';
-    document.body.appendChild(header);
-    document.body.appendChild(container);
-    document.body.appendChild(bottomNav);
-    
-  }
-
-  const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
-  const shuffledPairs = shuffleArray([...pairs, ...pairs]);
-
-  const h1Elements = document.querySelectorAll('.flip-card h1');
-  h1Elements.forEach((h1, index) => {
-    h1.textContent = shuffledPairs[index];
-  });
-
-const flipCards = document.querySelectorAll('.flip-card');
-flipCards.forEach(card => {
-  card.addEventListener('click', () => {
-    if (!card.classList.contains('flipped') && flippedCards.length < 2) {
-      flipCard(card);
-      flippedCards.push(card);
-
-      if (!timerStarted) {
-        timerStarted = true;
-        timerInterval = setInterval(setTime, 1000);
-      }
-
-      if (flippedCards.length === 2) {
-        const [card1, card2] = flippedCards;
-        const h1Element1 = card1.querySelector('h1');
-        const h1Element2 = card2.querySelector('h1');
-
-        if (h1Element1.textContent === h1Element2.textContent) {
-          card1.removeEventListener('click', flipCard);
-          card2.removeEventListener('click', flipCard);
-          markMatched([card1, card2]);
-          matchedPairs++;
-          if (matchedPairs === numCards / 2) {
-            clearInterval(timerInterval);
-
-            const timeTaken = `${minutesLabel.textContent}:${secondsLabel.textContent}`;
-            const movesTaken = `${totalMoves} Moves`;
-
-            pTime.textContent = timeTaken;
-            pMoves.textContent = movesTaken;
-
-
-            showFun();
-          }
-        } else {
-          setTimeout(() => {
-            unflipCard(card1);
-            unflipCard(card2);
-          }, 500);
-        }
-
-        moves++;
-        updateMovesDisplay();
-        flippedCards = [];
-      }
-    }
-  });
-});
-
-  }
-  else if(sixBysixInput.checked && onePlayerInput.checked){
-    const bottomNav = document.createElement('div');
-    bottomNav.classList.add('bot-nav6x6');
-    bottomNav.innerHTML = `<div class="bot-nav6x6">
-    <div class="time-container6x6">
-      <h5>Time</h5>
-      <div class="label">
-        <label id="minutes">0</label><label>:</label><label id="seconds">00</label>
+      <div class="move-container">
+        <h5>Moves</h5>
+        <p class="moves">0</p>
       </div>
-    </div>
-    <div class="move-container6x6">
-      <h5>Moves</h5>
-      <p class="moves">0</p>
-    </div>
-  </div>`;
-
-    const numCards = 36;
+    </div>`;
+  
+    const numCards = 16;
     const container = document.createElement('div');
-    container.classList.add('grid-container6x6');
+    container.classList.add('grid-container');
     for (let i = 0; i < numCards; i++) {
       const flipCard = document.createElement('div');
-      flipCard.classList.add('flip-card6x6');
-
+      flipCard.classList.add('flip-card');
+  
       const flipCardInner = document.createElement('div');
       flipCardInner.classList.add('flip-card-inner');
-
+  
       const flipCardFront = document.createElement('div');
       flipCardFront.classList.add('flip-card-front');
-
+  
       const flipCardBack = document.createElement('div');
       flipCardBack.classList.add('flip-card-back');
-
+  
       const h1 = document.createElement('h1');
       h1.textContent = '';
-
+  
       flipCardBack.appendChild(h1);
       flipCardInner.appendChild(flipCardFront);
       flipCardInner.appendChild(flipCardBack);
       flipCard.appendChild(flipCardInner);
-
+  
       container.appendChild(flipCard);
       document.body.innerHTML = '';
       document.body.style.backgroundColor = '#fcfcfc';
       document.body.appendChild(header);
       document.body.appendChild(container);
       document.body.appendChild(bottomNav);
+      
     }
-
-    // Create an array of pairs of numbers
+  
     const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
     const shuffledPairs = shuffleArray([...pairs, ...pairs]);
-
-    const h1Elements = document.querySelectorAll('.flip-card6x6 h1');
+  
+    const h1Elements = document.querySelectorAll('.flip-card h1');
     h1Elements.forEach((h1, index) => {
       h1.textContent = shuffledPairs[index];
     });
-
-    // Flipcard event-listener
-    const flipCards = document.querySelectorAll('.flip-card6x6');
-    flipCards.forEach(card => {
-      card.addEventListener('click', () => {
-        if (!card.classList.contains('flipped') && flippedCards.length < 2) {
-          flipCard(card);
-          flippedCards.push(card);
-
-          if (!timerStarted) {
-            timerStarted = true;
-            timerInterval = setInterval(setTime, 1000);
-          }
-
-          if (flippedCards.length === 2) {
-            const [card1, card2] = flippedCards;
-            const h1Element1 = card1.querySelector('h1');
-            const h1Element2 = card2.querySelector('h1');
-
-            if (h1Element1.textContent === h1Element2.textContent) {
-              // Matched cards, keep them flipped
-              card1.removeEventListener('click', flipCard);
-              card2.removeEventListener('click', flipCard);
-              markMatched([card1, card2]);
-              matchedPairs++;
-              if (matchedPairs === numCards / 2) {
-                // All pairs are matched, stop the timer
-                clearInterval(timerInterval);
-
-                const timeTaken = `${minutesLabel.textContent}:${secondsLabel.textContent}`;
-                const movesTaken = `${totalMoves} Moves`;
-
-                pTime.textContent = timeTaken;
-                pMoves.textContent = movesTaken;
-
-                showFun();
-              }
-            } else {
-              // Unmatched cards, unflip them after a delay
-              setTimeout(() => {
-                unflipCard(card1);
-                unflipCard(card2);
-              }, 500);
+    const flipCards = document.querySelectorAll('.flip-card');
+      flipCards.forEach(card => {
+        card.addEventListener('click', () => {
+          if (!card.classList.contains('flipped') && flippedCards.length < 2) {
+            flipCard(card);
+            flippedCards.push(card);
+      
+            if (!timerStarted) {
+              timerStarted = true;
+              timerInterval = setInterval(setTime, 1000);
             }
-
-            moves++;
-            updateMovesDisplay();
-            flippedCards = [];
+      
+            if (flippedCards.length === 2) {
+              const [card1, card2] = flippedCards;
+              const h1Element1 = card1.querySelector('h1');
+              const h1Element2 = card2.querySelector('h1');
+      
+              if (h1Element1.textContent === h1Element2.textContent) {
+                card1.removeEventListener('click', flipCard);
+                card2.removeEventListener('click', flipCard);
+                markMatched([card1, card2]);
+                matchedPairs++;
+                if (matchedPairs === numCards / 2) {
+                  clearInterval(timerInterval);
+      
+                  const timeTaken = `${minutesLabel.textContent}:${secondsLabel.textContent}`;
+                  const movesTaken = `${totalMoves} Moves`;
+      
+                  pTime.textContent = timeTaken;
+                  pMoves.textContent = movesTaken;
+      
+      
+                  showFun();
+                }
+              } else {
+                setTimeout(() => {
+                  unflipCard(card1);
+                  unflipCard(card2);
+                }, 500);
+              }
+      
+              moves++;
+              updateMovesDisplay();
+              flippedCards = [];
+            }
           }
-        }
+        });
       });
-    });
-   
+    }
+    else if(sixBysixInput.checked){
+      const bottomNav = document.createElement('div');
+      bottomNav.classList.add('bot-nav6x6');
+      bottomNav.innerHTML = `<div class="bot-nav6x6">
+      <div class="time-container6x6">
+        <h5>Time</h5>
+        <div class="label">
+          <label id="minutes">0</label><label>:</label><label id="seconds">00</label>
+        </div>
+      </div>
+      <div class="move-container6x6">
+        <h5>Moves</h5>
+        <p class="moves">0</p>
+      </div>
+    </div>`;
+  
+      const numCards = 36;
+      const container = document.createElement('div');
+      container.classList.add('grid-container6x6');
+      for (let i = 0; i < numCards; i++) {
+        const flipCard = document.createElement('div');
+        flipCard.classList.add('flip-card6x6');
+  
+        const flipCardInner = document.createElement('div');
+        flipCardInner.classList.add('flip-card-inner');
+  
+        const flipCardFront = document.createElement('div');
+        flipCardFront.classList.add('flip-card-front');
+  
+        const flipCardBack = document.createElement('div');
+        flipCardBack.classList.add('flip-card-back');
+  
+        const h1 = document.createElement('h1');
+        h1.textContent = '';
+  
+        flipCardBack.appendChild(h1);
+        flipCardInner.appendChild(flipCardFront);
+        flipCardInner.appendChild(flipCardBack);
+        flipCard.appendChild(flipCardInner);
+  
+        container.appendChild(flipCard);
+        document.body.innerHTML = '';
+        document.body.style.backgroundColor = '#fcfcfc';
+        document.body.appendChild(header);
+        document.body.appendChild(container);
+        document.body.appendChild(bottomNav);
+      }
+  
+      // Create an array of pairs of numbers
+      const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+      const shuffledPairs = shuffleArray([...pairs, ...pairs]);
+  
+      const h1Elements = document.querySelectorAll('.flip-card6x6 h1');
+      h1Elements.forEach((h1, index) => {
+        h1.textContent = shuffledPairs[index];
+      });
+
+      const flipCards = document.querySelectorAll('.flip-card6x6');
+      flipCards.forEach(card => {
+        card.addEventListener('click', () => {
+          if (!card.classList.contains('flipped') && flippedCards.length < 2) {
+            flipCard(card);
+            flippedCards.push(card);
+      
+            if (!timerStarted) {
+              timerStarted = true;
+              timerInterval = setInterval(setTime, 1000);
+            }
+      
+            if (flippedCards.length === 2) {
+              const [card1, card2] = flippedCards;
+              const h1Element1 = card1.querySelector('h1');
+              const h1Element2 = card2.querySelector('h1');
+      
+              if (h1Element1.textContent === h1Element2.textContent) {
+                card1.removeEventListener('click', flipCard);
+                card2.removeEventListener('click', flipCard);
+                markMatched([card1, card2]);
+                matchedPairs++;
+                if (matchedPairs === numCards / 2) {
+                  clearInterval(timerInterval);
+      
+                  const timeTaken = `${minutesLabel.textContent}:${secondsLabel.textContent}`;
+                  const movesTaken = `${totalMoves} Moves`;
+      
+                  pTime.textContent = timeTaken;
+                  pMoves.textContent = movesTaken;
+      
+      
+                  showFun();
+                }
+              } else {
+                setTimeout(() => {
+                  unflipCard(card1);
+                  unflipCard(card2);
+                }, 500);
+              }
+      
+              moves++;
+              updateMovesDisplay();
+              flippedCards = [];
+            }
+          }
+        });
+      });
+    }
 
 
   }
-  else if(fourByFourInput.checked && (twoPlayerInput.checked || threePlayerInput|| fourPlayerInput.checked)){
+
+  else if((fourByFourInput.checked || sixBysixInput.checked) && (twoPlayerInput.checked || threePlayerInput|| fourPlayerInput.checked)){
     const pairNav = document.createElement('div');
     pairNav.classList.add('pair-nav');
-    
+
     let numPlayers;
     if (twoPlayerInput.checked) {
         numPlayers = 2;
@@ -337,89 +335,176 @@ flipCards.forEach(card => {
   
       pairNav.appendChild(playerContainer);
     }
-    const numCards = 4;
-    const container = document.createElement('div');
-    container.classList.add('grid-container');
-    for (let i = 0; i < numCards; i++) {
-      const flipCard = document.createElement('div');
-      flipCard.classList.add('flip-card');
-
-      const flipCardInner = document.createElement('div');
-      flipCardInner.classList.add('flip-card-inner');
-
-      const flipCardFront = document.createElement('div');
-      flipCardFront.classList.add('flip-card-front');
-
-      const flipCardBack = document.createElement('div');
-      flipCardBack.classList.add('flip-card-back');
-
-      const h1 = document.createElement('h1');
-      h1.textContent = '';
-
-      flipCardBack.appendChild(h1);
-      flipCardInner.appendChild(flipCardFront);
-      flipCardInner.appendChild(flipCardBack);
-      flipCard.appendChild(flipCardInner);
-
-      container.appendChild(flipCard);
-      document.body.innerHTML = '';
-      document.body.style.backgroundColor = '#fcfcfc';
-      document.body.appendChild(header);
-      document.body.appendChild(container);
-      document.body.appendChild(pairNav);
-      
-    }
-
-    const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
-    const shuffledPairs = shuffleArray([...pairs, ...pairs]);
-
-    const h1Elements = document.querySelectorAll('.flip-card h1');
-    h1Elements.forEach((h1, index) => {
-      h1.textContent = shuffledPairs[index];
-    });
-
-  const flipCards = document.querySelectorAll('.flip-card');
-  flipCards.forEach(card => {
-    card.addEventListener('click', () => {
-      if (!card.classList.contains('flipped') && flippedCards.length < 2) {
-        flipCard(card);
-        flippedCards.push(card);
-
-        if (flippedCards.length === 2) {
-          const [card1, card2] = flippedCards;
-          const h1Element1 = card1.querySelector('h1');
-          const h1Element2 = card2.querySelector('h1');
-
-          if (h1Element1.textContent === h1Element2.textContent) {
-            card1.removeEventListener('click', flipCard);
-            card2.removeEventListener('click', flipCard);
-            markMatched([card1, card2]);
-            matchedPairs++;
-
-            // Update the player's score
-            playerScores[`Player${currentPlayer}`]++;
-            updatePlayerScore();
-
-
-            if (matchedPairs === numCards / 2) {
-              MultiPlayercreatePopup()
-              const myPopup = document.querySelector('.popup');
-              myPopup.classList.add('show');
-
-            }
-          } else {
-            setTimeout(() => {
-              unflipCard(card1);
-              unflipCard(card2);
-            }, 500);
-            // Switch to the next player's turn
-            currentPlayer = (currentPlayer % numPlayers) + 1;
-          }
-          flippedCards = [];
-        }
+    if(fourByFourInput.checked){
+      const numCards = 16;
+      const container = document.createElement('div');
+      container.classList.add('grid-container');
+      for (let i = 0; i < numCards; i++) {
+        const flipCard = document.createElement('div');
+        flipCard.classList.add('flip-card');
+  
+        const flipCardInner = document.createElement('div');
+        flipCardInner.classList.add('flip-card-inner');
+  
+        const flipCardFront = document.createElement('div');
+        flipCardFront.classList.add('flip-card-front');
+  
+        const flipCardBack = document.createElement('div');
+        flipCardBack.classList.add('flip-card-back');
+  
+        const h1 = document.createElement('h1');
+        h1.textContent = '';
+  
+        flipCardBack.appendChild(h1);
+        flipCardInner.appendChild(flipCardFront);
+        flipCardInner.appendChild(flipCardBack);
+        flipCard.appendChild(flipCardInner);
+  
+        container.appendChild(flipCard);
+        document.body.innerHTML = '';
+        document.body.style.backgroundColor = '#fcfcfc';
+        document.body.appendChild(header);
+        document.body.appendChild(container);
+        document.body.appendChild(pairNav);
+        
       }
+  
+      const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+      const shuffledPairs = shuffleArray([...pairs, ...pairs]);
+  
+      const h1Elements = document.querySelectorAll('.flip-card h1');
+      h1Elements.forEach((h1, index) => {
+        h1.textContent = shuffledPairs[index];
+      });
+  
+    const flipCards = document.querySelectorAll('.flip-card');
+    flipCards.forEach(card => {
+      card.addEventListener('click', () => {
+        if (!card.classList.contains('flipped') && flippedCards.length < 2) {
+          flipCard(card);
+          flippedCards.push(card);
+  
+          if (flippedCards.length === 2) {
+            const [card1, card2] = flippedCards;
+            const h1Element1 = card1.querySelector('h1');
+            const h1Element2 = card2.querySelector('h1');
+  
+            if (h1Element1.textContent === h1Element2.textContent) {
+              card1.removeEventListener('click', flipCard);
+              card2.removeEventListener('click', flipCard);
+              markMatched([card1, card2]);
+              matchedPairs++;
+  
+              // Update the player's score
+              playerScores[`Player${currentPlayer}`]++;
+              updatePlayerScore();
+  
+  
+              if (matchedPairs === numCards / 2) {
+                MultiPlayercreatePopup()
+                const myPopup = document.querySelector('.popup');
+                myPopup.classList.add('show');
+  
+              }
+            } else {
+              setTimeout(() => {
+                unflipCard(card1);
+                unflipCard(card2);
+              }, 500);
+              // Switch to the next player's turn
+              currentPlayer = (currentPlayer % numPlayers) + 1;
+            }
+            flippedCards = [];
+          }
+        }
+      });
     });
-  });
+    }
+    else if(sixBysixInput.checked){
+      const numCards = 36;
+      const container = document.createElement('div');
+      container.classList.add('grid-container6x6');
+      for (let i = 0; i < numCards; i++) {
+        const flipCard = document.createElement('div');
+        flipCard.classList.add('flip-card6x6');
+  
+        const flipCardInner = document.createElement('div');
+        flipCardInner.classList.add('flip-card-inner');
+  
+        const flipCardFront = document.createElement('div');
+        flipCardFront.classList.add('flip-card-front');
+  
+        const flipCardBack = document.createElement('div');
+        flipCardBack.classList.add('flip-card-back');
+  
+        const h1 = document.createElement('h1');
+        h1.textContent = '';
+  
+        flipCardBack.appendChild(h1);
+        flipCardInner.appendChild(flipCardFront);
+        flipCardInner.appendChild(flipCardBack);
+        flipCard.appendChild(flipCardInner);
+  
+        container.appendChild(flipCard);
+        document.body.innerHTML = '';
+        document.body.style.backgroundColor = '#fcfcfc';
+        document.body.appendChild(header);
+        document.body.appendChild(container);
+        document.body.appendChild(pairNav);
+        
+      }
+  
+      const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+      const shuffledPairs = shuffleArray([...pairs, ...pairs]);
+  
+      const h1Elements = document.querySelectorAll('.flip-card6x6 h1');
+      h1Elements.forEach((h1, index) => {
+        h1.textContent = shuffledPairs[index];
+      });
+  
+    const flipCards = document.querySelectorAll('.flip-card6x6');
+    flipCards.forEach(card => {
+      card.addEventListener('click', () => {
+        if (!card.classList.contains('flipped') && flippedCards.length < 2) {
+          flipCard(card);
+          flippedCards.push(card);
+  
+          if (flippedCards.length === 2) {
+            const [card1, card2] = flippedCards;
+            const h1Element1 = card1.querySelector('h1');
+            const h1Element2 = card2.querySelector('h1');
+  
+            if (h1Element1.textContent === h1Element2.textContent) {
+              card1.removeEventListener('click', flipCard);
+              card2.removeEventListener('click', flipCard);
+              markMatched([card1, card2]);
+              matchedPairs++;
+  
+              // Update the player's score
+              playerScores[`Player${currentPlayer}`]++;
+              updatePlayerScore();
+  
+  
+              if (matchedPairs === numCards / 2) {
+                MultiPlayercreatePopup()
+                const myPopup = document.querySelector('.popup');
+                myPopup.classList.add('show');
+  
+              }
+            } else {
+              setTimeout(() => {
+                unflipCard(card1);
+                unflipCard(card2);
+              }, 500);
+              // Switch to the next player's turn
+              currentPlayer = (currentPlayer % numPlayers) + 1;
+            }
+            flippedCards = [];
+          }
+        }
+      });
+    });
+    }
   
   function updatePlayerScore() {
     for (let i = 1; i <= numPlayers; i++) {
@@ -525,6 +610,7 @@ flipCards.forEach(card => {
 
 
   }
+ 
 
   pTime = document.createElement('p'); 
   pTime.textContent = '1:53';
@@ -601,7 +687,6 @@ flipCards.forEach(card => {
   }
  
 }
-
 
 
 // Solo popup funtion
@@ -761,3 +846,26 @@ function mobileMenu(){
   document.body.appendChild(overlayDiv);
 
 }
+
+
+  // if (iconsInput.checked) {
+  //   const icons = ['🎉', '🚀', '🌟', '🍎', '🌈', '🐱', '🎸', '🚗', '🍕', '📚', '🎨', '🦄'];
+  // const pairs = icons.concat(icons); // Duplicate the icons to create pairs
+  // const shuffledPairs = shuffleArray(pairs);
+
+  // const h1Elements = document.querySelectorAll('.flip-card h1');
+  // h1Elements.forEach((h1, index) => {
+  //   h1.textContent = shuffledPairs[index];
+  // });
+  // }
+
+
+  // function flippedSelector(){
+  //   let flipCards;
+  //   if(fourByFourInput.checked){
+  //     flipCards = document.querySelectorAll('.flip-card');
+  //   }else if(sixBysixInput.checked){
+  //     flipCards = document.querySelectorAll('.flip-card6x6');
+  //   }
+  //   return flipCards;
+  // }

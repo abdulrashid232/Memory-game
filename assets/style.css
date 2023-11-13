@@ -30,8 +30,9 @@ body{
 .main-container{
   border-radius: 10px;
   background-color: var(--secondary-color4);
-  width: 654px;
-  height: 559px;
+  width: 45%;
+  width: 665px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

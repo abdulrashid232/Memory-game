@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   width: 80%;
+  max-width: 750px;
   height: 52px;
   justify-content: space-between;
   margin-top: 1rem;
