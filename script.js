@@ -16,9 +16,10 @@ let flippedCards = [];
 let currentPlayer = 1;
 let isPaused = false;
 let totalSeconds = 0;
+let pairs;
 
 StartBtn.addEventListener('click', () => {
-  if (numbersInput.checked && (onePlayerInput.checked || twoPlayerInput.checked || threePlayerInput|| fourPlayerInput.checked) && (fourByFourInput.checked || sixBysixInput.checked)) {
+  if ((numbersInput.checked || iconsInput.checked) && (onePlayerInput.checked || twoPlayerInput.checked || threePlayerInput|| fourPlayerInput.checked) && (fourByFourInput.checked || sixBysixInput.checked)) {
     createFlipCardGrid();
   }
    else  {
@@ -120,8 +121,13 @@ function createFlipCardGrid() {
       document.body.appendChild(bottomNav);
       
     }
-  
-    const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+    
+
+    if (numbersInput.checked) {
+      pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+    } else if (iconsInput.checked) {
+      pairs = generateShuffledIcons(numCards / 2);
+    }
     const shuffledPairs = shuffleArray([...pairs, ...pairs]);
   
     const h1Elements = document.querySelectorAll('.flip-card h1');
@@ -225,8 +231,12 @@ function createFlipCardGrid() {
         document.body.appendChild(bottomNav);
       }
   
-      // Create an array of pairs of numbers
-      const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+
+      if (numbersInput.checked) {
+        pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+      } else if (iconsInput.checked) {
+        pairs = generateShuffledIcons(numCards / 2);
+      }
       const shuffledPairs = shuffleArray([...pairs, ...pairs]);
   
       const h1Elements = document.querySelectorAll('.flip-card6x6 h1');
@@ -369,7 +379,11 @@ function createFlipCardGrid() {
         
       }
   
-      const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+      if (numbersInput.checked) {
+        pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+      } else if (iconsInput.checked) {
+        pairs = generateShuffledIcons(numCards / 2);
+      }
       const shuffledPairs = shuffleArray([...pairs, ...pairs]);
   
       const h1Elements = document.querySelectorAll('.flip-card h1');
@@ -454,7 +468,11 @@ function createFlipCardGrid() {
         
       }
   
-      const pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+      if (numbersInput.checked) {
+        pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+      } else if (iconsInput.checked) {
+        pairs = generateShuffledIcons(numCards / 2);
+      }
       const shuffledPairs = shuffleArray([...pairs, ...pairs]);
   
       const h1Elements = document.querySelectorAll('.flip-card6x6 h1');
@@ -659,6 +677,11 @@ function createFlipCardGrid() {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+  }
+  function generateShuffledIcons(numPairs) {
+    const icons = ['🎉', '🚀', '🌟', '🍎', '🌈', '🐱', '🎸', '🚗', '🍕', '📚', '🎨', '🦄', '🌺', '🎈', '🍪', '🐼', '🍉', '🌞'];
+    const shuffledIcons = shuffleArray(icons);
+    return shuffledIcons.slice(0, numPairs);
   }
 
   let minutesLabel = document.getElementById("minutes");
