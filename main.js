@@ -846,26 +846,3 @@ function mobileMenu(){
   document.body.appendChild(overlayDiv);
 
 }
-
-
-  // if (iconsInput.checked) {
-  //   const icons = ['🎉', '🚀', '🌟', '🍎', '🌈', '🐱', '🎸', '🚗', '🍕', '📚', '🎨', '🦄'];
-  // const pairs = icons.concat(icons); // Duplicate the icons to create pairs
-  // const shuffledPairs = shuffleArray(pairs);
-
-  // const h1Elements = document.querySelectorAll('.flip-card h1');
-  // h1Elements.forEach((h1, index) => {
-  //   h1.textContent = shuffledPairs[index];
-  // });
-  // }
-
-
-  // function flippedSelector(){
-  //   let flipCards;
-  //   if(fourByFourInput.checked){
-  //     flipCards = document.querySelectorAll('.flip-card');
-  //   }else if(sixBysixInput.checked){
-  //     flipCards = document.querySelectorAll('.flip-card6x6');
-  //   }
-  //   return flipCards;
-  // }
