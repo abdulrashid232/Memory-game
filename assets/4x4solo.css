@@ -612,4 +612,7 @@
   .pairMatch{
     font-size: 70px;
   }
+  .active {
+    background-color:var(--primary-color1); /* or any color you prefer */
+  }
  }
