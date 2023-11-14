@@ -377,6 +377,9 @@
 /* .show{
   display: block;
 } */
+.active {
+  background-color:var(--primary-color1); /* or any color you prefer */
+}
 .player_score{
   display: flex;
   align-items: center;

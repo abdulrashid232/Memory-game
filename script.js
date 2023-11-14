@@ -378,6 +378,8 @@ function createFlipCardGrid() {
         document.body.appendChild(pairNav);
         
       }
+      const currentPlayerBg = document.getElementById(`Player${currentPlayer}`);
+      currentPlayerBg.classList.add('active');
   
       if (numbersInput.checked) {
         pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
@@ -427,12 +429,21 @@ function createFlipCardGrid() {
               }, 500);
               // Switch to the next player's turn
               currentPlayer = (currentPlayer % numPlayers) + 1;
+              currentPlayerTurnBg();
             }
             flippedCards = [];
           }
         }
       });
     });
+    function currentPlayerTurnBg() {
+      for (let i = 1; i <= numPlayers; i++) {
+          const pairContainer = document.getElementById(`Player${i}`);
+          pairContainer.classList.remove('active');
+      }
+      const currentPlayerContainer = document.getElementById(`Player${currentPlayer}`);
+      currentPlayerContainer.classList.add('active');
+  }
     }
     else if(sixBysixInput.checked){
       const numCards = 36;
