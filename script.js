@@ -346,7 +346,7 @@ function createFlipCardGrid() {
       pairNav.appendChild(playerContainer);
     }
     if(fourByFourInput.checked){
-      const numCards = 4;
+      const numCards = 16;
       const container = document.createElement('div');
       container.classList.add('grid-container');
       for (let i = 0; i < numCards; i++) {
@@ -594,7 +594,7 @@ function createFlipCardGrid() {
       const pairMatch = document.createElement('p');
       pairMatch.classList.add('pairMatch');
       pairMatch.textContent = `${data.pairs} pairs`;
-      
+
       playerTitle.textContent = data.player + isWinner;
       if(playerTitle.textContent.includes('(Winner!)')){
         playerDiv.style.backgroundColor= '#304859';

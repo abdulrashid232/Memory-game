@@ -346,7 +346,7 @@ function createFlipCardGrid() {
       pairNav.appendChild(playerContainer);
     }
     if(fourByFourInput.checked){
-      const numCards = 4;
+      const numCards = 16;
       const container = document.createElement('div');
       container.classList.add('grid-container');
       for (let i = 0; i < numCards; i++) {
