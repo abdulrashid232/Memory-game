@@ -17,6 +17,9 @@
   --font-family:'Atkinson Hyperlegible';
 
 }
+.whiteColor{
+  color: white !important; 
+}
 .header{
   display: flex;
   align-items: center;
