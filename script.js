@@ -558,7 +558,7 @@ function createFlipCardGrid() {
     topNote.className = 'top-note';
   
     const winners = getWinners();
-    const winnerText = winners.length > 1 ? 'It\'s a tie' : 'Wins';
+    const winnerText = winners.length > 1 ? 'It\'s a tie' : 'Wins\!';
   
     const winner = document.createElement('h2');
     winner.textContent = winners.length> 1 ? `${winnerText} `: `${winners.join(', ')} ${winnerText}`;
@@ -594,7 +594,7 @@ function createFlipCardGrid() {
       const pairMatch = document.createElement('p');
       pairMatch.classList.add('pairMatch');
       pairMatch.textContent = `${data.pairs} pairs`;
-
+      
       playerTitle.textContent = data.player + isWinner;
       if(playerTitle.textContent.includes('(Winner!)')){
         playerDiv.style.backgroundColor= '#304859';

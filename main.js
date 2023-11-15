@@ -558,7 +558,7 @@ function createFlipCardGrid() {
     topNote.className = 'top-note';
   
     const winners = getWinners();
-    const winnerText = winners.length > 1 ? 'It\'s a tie' : 'Wins';
+    const winnerText = winners.length > 1 ? 'It\'s a tie' : 'Wins\!';
   
     const winner = document.createElement('h2');
     winner.textContent = winners.length> 1 ? `${winnerText} `: `${winners.join(', ')} ${winnerText}`;
