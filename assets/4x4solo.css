@@ -414,7 +414,9 @@
     height: 52px;
     padding: 0;
     margin-top: 0;
-    margin-bottom:0 ;
+    /* margin-bottom:0 ; */
+    position: relative;
+    top: -1rem;
     /* padding:2rem 15rem 2rem 15rem; */
   }
   .grid-container{
@@ -548,7 +550,7 @@
   align-items: center;
   justify-content: space-evenly;
   width: 350px;
-  margin-top: 5rem;
+  margin-top: 2rem;
   }
   .playerContainer{
   width: 70px;
