@@ -179,6 +179,12 @@ input[type="radio"]:checked + .button-text {
  /* media queries */
 
  @media  only screen and (max-width:480px) {
+  body{
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
   .main-container{
     width: 350px;
     height:450px;
