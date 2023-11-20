@@ -409,6 +409,14 @@
  /* media queries */
 
 @media  only screen and (max-width:480px) {
+  .header{
+    max-width: 750px;
+    height: 52px;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom:0 ;
+    /* padding:2rem 15rem 2rem 15rem; */
+  }
   .grid-container{
     grid-template-columns: repeat(4, 25%);
     width: 350px;
