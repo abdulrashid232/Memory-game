@@ -1,5 +1,6 @@
 import { createPopup } from "../soloPlayer.js";
-import { markMatched,multiPlayerFlipCardEventListener,showFun,mobileMenu} from "../script.js";
+import { markMatched,showFun,mobileMenu} from "../script.js";
+import { multiPlayerFlipCardEventListener } from "../multiPlayer.js";
 const numbersInput = document.getElementById('numbers');
 const iconsInput = document.getElementById('icons');
 const onePlayerInput = document.getElementById('1');
@@ -262,7 +263,7 @@ export function createFlipCardGrid() {
                   pTime.textContent = timeTaken;
                   pMoves.textContent = movesTaken;
       
-                  createPopup();
+                  createPopup(pTime,pMoves);
                   showFun();
                 }
               } else {
