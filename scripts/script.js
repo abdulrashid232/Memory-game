@@ -1,4 +1,4 @@
-import { createFlipCardGrid} from "./utils/card.js";
+import { createFlipCardGrid} from "../scripts/utils/card.js";
 
 const StartBtn = document.querySelector('.btn-start');
 const numbersInput = document.getElementById('numbers');
