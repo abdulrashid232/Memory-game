@@ -17,6 +17,7 @@ let currentPlayer = 1;
 let isPaused = false;
 let totalSeconds = 0;
 let pairs;
+let shuffledPairs;
 
 StartBtn.addEventListener('click', () => {
   if ((numbersInput.checked || iconsInput.checked) && (onePlayerInput.checked || twoPlayerInput.checked || threePlayerInput|| fourPlayerInput.checked) && (fourByFourInput.checked || sixBysixInput.checked)) {
@@ -27,6 +28,17 @@ StartBtn.addEventListener('click', () => {
   }
 });
 
+function flipCardContent(numCards,){
+  if (numbersInput.checked) {
+    pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+  } else if (iconsInput.checked) {
+    pairs = generateShuffledIcons(numCards / 2);
+  }
+
+  shuffledPairs = shuffleArray([...pairs, ...pairs]);
+  
+  return shuffledPairs;
+}
 // grid card function
 
 function createFlipCardGrid() {
@@ -122,14 +134,8 @@ function createFlipCardGrid() {
       
     }
     
-
-    if (numbersInput.checked) {
-      pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
-    } else if (iconsInput.checked) {
-      pairs = generateShuffledIcons(numCards / 2);
-    }
-    const shuffledPairs = shuffleArray([...pairs, ...pairs]);
-  
+    flipCardContent(numCards);
+    
     const h1Elements = document.querySelectorAll('.flip-card h1');
     h1Elements.forEach((h1, index) => {
       h1.textContent = shuffledPairs[index];
@@ -231,14 +237,8 @@ function createFlipCardGrid() {
         document.body.appendChild(bottomNav);
       }
   
+      flipCardContent(numCards);
 
-      if (numbersInput.checked) {
-        pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
-      } else if (iconsInput.checked) {
-        pairs = generateShuffledIcons(numCards / 2);
-      }
-      const shuffledPairs = shuffleArray([...pairs, ...pairs]);
-  
       const h1Elements = document.querySelectorAll('.flip-card6x6 h1');
       h1Elements.forEach((h1, index) => {
         h1.textContent = shuffledPairs[index];
@@ -381,12 +381,7 @@ function createFlipCardGrid() {
       const currentPlayerBg = document.getElementById(`Player${currentPlayer}`);
       currentPlayerBg.classList.add('active');
   
-      if (numbersInput.checked) {
-        pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
-      } else if (iconsInput.checked) {
-        pairs = generateShuffledIcons(numCards / 2);
-      }
-      const shuffledPairs = shuffleArray([...pairs, ...pairs]);
+      flipCardContent(numCards);
   
       const h1Elements = document.querySelectorAll('.flip-card h1');
       h1Elements.forEach((h1, index) => {
@@ -472,12 +467,7 @@ function createFlipCardGrid() {
       const currentPlayerBg = document.getElementById(`Player${currentPlayer}`);
       currentPlayerBg.classList.add('active');
   
-      if (numbersInput.checked) {
-        pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
-      } else if (iconsInput.checked) {
-        pairs = generateShuffledIcons(numCards / 2);
-      }
-      const shuffledPairs = shuffleArray([...pairs, ...pairs]);
+      flipCardContent(numCards);
   
       const h1Elements = document.querySelectorAll('.flip-card6x6 h1');
       h1Elements.forEach((h1, index) => {
@@ -690,18 +680,6 @@ function createFlipCardGrid() {
     movesDisplay.textContent = totalMoves;
   }
 
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
-  function generateShuffledIcons(numPairs) {
-    const icons = ['🎉', '🚀', '🌟', '🍎', '🌈', '🐱', '🎸', '🚗', '🍕', '📚', '🎨', '🦄', '🌺', '🎈', '🍪', '🐼', '🍉', '🌞'];
-    const shuffledIcons = shuffleArray(icons);
-    return shuffledIcons.slice(0, numPairs);
-  }
 
   let minutesLabel = document.getElementById("minutes");
   let secondsLabel = document.getElementById("seconds");
@@ -878,4 +856,17 @@ function mobileMenu(){
   overlayDiv.appendChild(overlayContentDiv);
   document.body.appendChild(overlayDiv);
 
+}
+
+function generateShuffledIcons(numPairs) {
+  const icons = ['🎉', '🚀', '🌟', '🍎', '🌈', '🐱', '🎸', '🚗', '🍕', '📚', '🎨', '🦄', '🌺', '🎈', '🍪', '🐼', '🍉', '🌞'];
+  const shuffledIcons = shuffleArray(icons);
+  return shuffledIcons.slice(0, numPairs);
+}
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
