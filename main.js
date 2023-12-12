@@ -871,14 +871,6 @@ function mobileMenu(){
   resumeButton.textContent = 'Resume Game';
   resumeButton.addEventListener('click', function() {
     document.getElementById('myNav').style.width = '0';
-    // if (!timerStarted) {
-    //   timerStarted = true;
-    //   timerInterval = setInterval(setTime, 1000);
-    // }
-  //   if (!timerStarted) {
-  //     timerStarted = true;
-  //     ++totalSeconds;
-  // }
   });
 
 
