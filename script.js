@@ -1,4 +1,5 @@
 import { createPopup } from "./soloPlayer.js";
+import { flipCardContent } from "./utils/card.js";
 
 
 const StartBtn = document.querySelector('.btn-start');
@@ -19,8 +20,7 @@ let flippedCards = [];
 let currentPlayer = 1;
 let isPaused = false;
 let totalSeconds = 0;
-let pairs;
-let shuffledPairs;
+
 
 StartBtn.addEventListener('click', () => {
   if ((numbersInput.checked || iconsInput.checked) && (onePlayerInput.checked || twoPlayerInput.checked || threePlayerInput|| fourPlayerInput.checked) && (fourByFourInput.checked || sixBysixInput.checked)) {
@@ -46,6 +46,8 @@ function createFlipCardGrid() {
   menu.className = 'mobileBtn';
   header.appendChild(topNav);
   header.appendChild(menu);
+
+  
   menu.addEventListener('click', () => {
     pauseTimer();
     mobileMenu()
@@ -126,7 +128,7 @@ function createFlipCardGrid() {
       
     }
     
-    flipCardContent(numCards);
+    const shuffledPairs = flipCardContent(numCards);
     
     const h1Elements = document.querySelectorAll('.flip-card h1');
     h1Elements.forEach((h1, index) => {
@@ -229,7 +231,7 @@ function createFlipCardGrid() {
         document.body.appendChild(bottomNav);
       }
   
-      flipCardContent(numCards);
+      const shuffledPairs = flipCardContent(numCards);
 
       const h1Elements = document.querySelectorAll('.flip-card6x6 h1');
       h1Elements.forEach((h1, index) => {
@@ -373,7 +375,7 @@ function createFlipCardGrid() {
       const currentPlayerBg = document.getElementById(`Player${currentPlayer}`);
       currentPlayerBg.classList.add('active');
   
-      flipCardContent(numCards);
+      const shuffledPairs = flipCardContent(numCards);
   
       const h1Elements = document.querySelectorAll('.flip-card h1');
       h1Elements.forEach((h1, index) => {
@@ -419,7 +421,7 @@ function createFlipCardGrid() {
       const currentPlayerBg = document.getElementById(`Player${currentPlayer}`);
       currentPlayerBg.classList.add('active');
   
-      flipCardContent(numCards);
+      const shuffledPairs = flipCardContent(numCards);
   
       const h1Elements = document.querySelectorAll('.flip-card6x6 h1');
       h1Elements.forEach((h1, index) => {
@@ -546,18 +548,7 @@ function mobileMenu(){
 
 }
 
-function generateShuffledIcons(numPairs) {
-  const icons = ['🎉', '🚀', '🌟', '🍎', '🌈', '🐱', '🎸', '🚗', '🍕', '📚', '🎨', '🦄', '🌺', '🎈', '🍪', '🐼', '🍉', '🌞'];
-  const shuffledIcons = shuffleArray(icons);
-  return shuffledIcons.slice(0, numPairs);
-}
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
+
 
 
 function MultiPlayercreatePopup(numPlayers,playerScores) {
@@ -667,17 +658,6 @@ function currentPlayerTurnBg(currentPlayer,numPlayers) {
   currentPlayerContainer.classList.add('active');
 }
 
-function flipCardContent(numCards,){
-  if (numbersInput.checked) {
-    pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
-  } else if (iconsInput.checked) {
-    pairs = generateShuffledIcons(numCards / 2);
-  }
-
-  shuffledPairs = shuffleArray([...pairs, ...pairs]);
-  
-  return shuffledPairs;
-}
 
 function updatePlayerScore(numPlayers,playerScores) {
   for (let i = 1; i <= numPlayers; i++) {
