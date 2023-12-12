@@ -1,5 +1,5 @@
 import { createPopup } from "./soloPlayer.js";
-import { flipCardContent } from "./utils/card.js";
+import { flipCardContent,flipCard,unflipCard } from "./utils/card.js";
 
 
 const StartBtn = document.querySelector('.btn-start');
@@ -47,7 +47,7 @@ function createFlipCardGrid() {
   header.appendChild(topNav);
   header.appendChild(menu);
 
-  
+
   menu.addEventListener('click', () => {
     pauseTimer();
     mobileMenu()
@@ -667,21 +667,6 @@ function updatePlayerScore(numPlayers,playerScores) {
   }
 }
 
-function flipCard(card) {
-  card.classList.add('flipped');
-  let innerCard = card.querySelectorAll('.flip-card-inner');
-  innerCard.forEach(element => {
-    element.style.transform = 'rotateY(180deg)';
-  });
-}
-
-function unflipCard(card) {
-  card.classList.remove('flipped');
-  let innerCard = card.querySelectorAll('.flip-card-inner');
-  innerCard.forEach(element => {
-    element.style.transform = 'rotateY(0deg)';
-  });
-}
 
 function markMatched(cards) {
   cards.forEach(card => {

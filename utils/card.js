@@ -42,3 +42,19 @@ function shuffleArray(array) {
   }
   return array;
 }
+
+export function flipCard(card) {
+  card.classList.add('flipped');
+  let innerCard = card.querySelectorAll('.flip-card-inner');
+  innerCard.forEach(element => {
+    element.style.transform = 'rotateY(180deg)';
+  });
+}
+
+export function unflipCard(card) {
+  card.classList.remove('flipped');
+  let innerCard = card.querySelectorAll('.flip-card-inner');
+  innerCard.forEach(element => {
+    element.style.transform = 'rotateY(0deg)';
+  });
+}
