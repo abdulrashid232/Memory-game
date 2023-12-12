@@ -28,17 +28,6 @@ StartBtn.addEventListener('click', () => {
   }
 });
 
-function flipCardContent(numCards,){
-  if (numbersInput.checked) {
-    pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
-  } else if (iconsInput.checked) {
-    pairs = generateShuffledIcons(numCards / 2);
-  }
-
-  shuffledPairs = shuffleArray([...pairs, ...pairs]);
-  
-  return shuffledPairs;
-}
 // grid card function
 
 function createFlipCardGrid() {
@@ -388,48 +377,8 @@ function createFlipCardGrid() {
         h1.textContent = shuffledPairs[index];
       });
   
-    const flipCards = document.querySelectorAll('.flip-card');
-    flipCards.forEach(card => {
-      card.addEventListener('click', () => {
-        if (!card.classList.contains('flipped') && flippedCards.length < 2) {
-          flipCard(card);
-          flippedCards.push(card);
-  
-          if (flippedCards.length === 2) {
-            const [card1, card2] = flippedCards;
-            const h1Element1 = card1.querySelector('h1');
-            const h1Element2 = card2.querySelector('h1');
-  
-            if (h1Element1.textContent === h1Element2.textContent) {
-              card1.removeEventListener('click', flipCard);
-              card2.removeEventListener('click', flipCard);
-              markMatched([card1, card2]);
-              matchedPairs++;
-  
-              // Update the player's score
-              playerScores[`Player${currentPlayer}`]++;
-              updatePlayerScore();
-  
-  
-              if (matchedPairs === numCards / 2) {
-                MultiPlayercreatePopup(numPlayers,playerScores);
-                showFun();
-  
-              }
-            } else {
-              setTimeout(() => {
-                unflipCard(card1);
-                unflipCard(card2);
-              }, 500);
-              // Switch to the next player's turn
-              currentPlayer = (currentPlayer % numPlayers) + 1;
-              currentPlayerTurnBg();
-            }
-            flippedCards = [];
-          }
-        }
-      });
-    });
+      const flipCards = document.querySelectorAll('.flip-card');
+      multiPlayerFlipCardEventListener(flipCards, numPlayers,playerScores, numCards,currentPlayer, matchedPairs);
     }
     else if(sixBysixInput.checked){
       const numCards = 8;
@@ -474,72 +423,13 @@ function createFlipCardGrid() {
         h1.textContent = shuffledPairs[index];
       });
   
-    const flipCards = document.querySelectorAll('.flip-card6x6');
-    flipCards.forEach(card => {
-      card.addEventListener('click', () => {
-        if (!card.classList.contains('flipped') && flippedCards.length < 2) {
-          flipCard(card);
-          flippedCards.push(card);
-  
-          if (flippedCards.length === 2) {
-            const [card1, card2] = flippedCards;
-            const h1Element1 = card1.querySelector('h1');
-            const h1Element2 = card2.querySelector('h1');
-  
-            if (h1Element1.textContent === h1Element2.textContent) {
-              card1.removeEventListener('click', flipCard);
-              card2.removeEventListener('click', flipCard);
-              markMatched([card1, card2]);
-              matchedPairs++;
-  
-              // Update the player's score
-              playerScores[`Player${currentPlayer}`]++;
-              updatePlayerScore();
-  
-  
-              if (matchedPairs === numCards / 2) {
-                MultiPlayercreatePopup(numPlayers,playerScores);
-                showFun();
-  
-              }
-            } else {
-              setTimeout(() => {
-                unflipCard(card1);
-                unflipCard(card2);
-              }, 500);
-              // Switch to the next player's turn
-              currentPlayer = (currentPlayer % numPlayers) + 1;
-              currentPlayerTurnBg();
-            }
-            flippedCards = [];
-          }
-        }
-      });
-    });
-    }
-    function currentPlayerTurnBg() {
-      for (let i = 1; i <= numPlayers; i++) {
-          const pairContainer = document.getElementById(`Player${i}`);
-          pairContainer.classList.remove('active');
+      const flipCards = document.querySelectorAll('.flip-card6x6');
+      multiPlayerFlipCardEventListener(flipCards, numPlayers,playerScores, numCards,currentPlayer, matchedPairs);
       }
-      const currentPlayerContainer = document.getElementById(`Player${currentPlayer}`);
-      currentPlayerContainer.classList.add('active');
-  }
-  
-  function updatePlayerScore() {
-    for (let i = 1; i <= numPlayers; i++) {
-      const playerElement = document.getElementById(`Player${i}`);
-      const pairMatch = playerElement.querySelector('.pairMatch');
-      pairMatch.textContent = playerScores[`Player${i}`];
-    }
-  }
-  
-
-  
-
+   
 
   }
- 
+
 
   pTime = document.createElement('p'); 
   pTime.textContent = '1:53';
@@ -547,40 +437,6 @@ function createFlipCardGrid() {
   pMoves = document.createElement('p');
   pMoves.textContent = '39 Moves';
   
-
-
-  function flipCard(card) {
-    card.classList.add('flipped');
-    let innerCard = card.querySelectorAll('.flip-card-inner');
-    innerCard.forEach(element => {
-      element.style.transform = 'rotateY(180deg)';
-    });
-  }
-
-  function unflipCard(card) {
-    card.classList.remove('flipped');
-    let innerCard = card.querySelectorAll('.flip-card-inner');
-    innerCard.forEach(element => {
-      element.style.transform = 'rotateY(0deg)';
-    });
-  }
-
-  function markMatched(cards) {
-    cards.forEach(card => {
-      card.classList.add('matched');
-      let innerCard = card.querySelectorAll('.flip-card-back');
-      innerCard.forEach(element => {
-        element.style.backgroundColor = '#fda214';
-      });
-    });
-  }
-
-  function updateMovesDisplay() {
-    totalMoves = moves; 
-    pMoves.textContent = `${totalMoves} Moves`;
-    const movesDisplay = document.querySelector('.moves');
-    movesDisplay.textContent = totalMoves;
-  }
 
 
   let minutesLabel = document.getElementById("minutes");
@@ -870,4 +726,110 @@ function getWinners(numPlayers,playerScores) {
     }
   }
   return winners;
+}
+
+function currentPlayerTurnBg(currentPlayer,numPlayers) {
+  for (let i = 1; i <= numPlayers; i++) {
+      const pairContainer = document.getElementById(`Player${i}`);
+      pairContainer.classList.remove('active');
+  }
+  const currentPlayerContainer = document.getElementById(`Player${currentPlayer}`);
+  currentPlayerContainer.classList.add('active');
+}
+
+function flipCardContent(numCards,){
+  if (numbersInput.checked) {
+    pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
+  } else if (iconsInput.checked) {
+    pairs = generateShuffledIcons(numCards / 2);
+  }
+
+  shuffledPairs = shuffleArray([...pairs, ...pairs]);
+  
+  return shuffledPairs;
+}
+
+function updatePlayerScore(numPlayers,playerScores) {
+  for (let i = 1; i <= numPlayers; i++) {
+    const playerElement = document.getElementById(`Player${i}`);
+    const pairMatch = playerElement.querySelector('.pairMatch');
+    pairMatch.textContent = playerScores[`Player${i}`];
+  }
+}
+
+function flipCard(card) {
+  card.classList.add('flipped');
+  let innerCard = card.querySelectorAll('.flip-card-inner');
+  innerCard.forEach(element => {
+    element.style.transform = 'rotateY(180deg)';
+  });
+}
+
+function unflipCard(card) {
+  card.classList.remove('flipped');
+  let innerCard = card.querySelectorAll('.flip-card-inner');
+  innerCard.forEach(element => {
+    element.style.transform = 'rotateY(0deg)';
+  });
+}
+
+function markMatched(cards) {
+  cards.forEach(card => {
+    card.classList.add('matched');
+    let innerCard = card.querySelectorAll('.flip-card-back');
+    innerCard.forEach(element => {
+      element.style.backgroundColor = '#fda214';
+    });
+  });
+}
+
+function updateMovesDisplay() {
+  totalMoves = moves; 
+  pMoves.textContent = `${totalMoves} Moves`;
+  const movesDisplay = document.querySelector('.moves');
+  movesDisplay.textContent = totalMoves;
+}
+
+function multiPlayerFlipCardEventListener(flipCards, numPlayers,playerScores, numCards,currentPlayer, matchedPairs){
+  flipCards.forEach(card => {
+    card.addEventListener('click', () => {
+      if (!card.classList.contains('flipped') && flippedCards.length < 2) {
+        flipCard(card);
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+          const [card1, card2] = flippedCards;
+          const h1Element1 = card1.querySelector('h1');
+          const h1Element2 = card2.querySelector('h1');
+
+          if (h1Element1.textContent === h1Element2.textContent) {
+            card1.removeEventListener('click', flipCard);
+            card2.removeEventListener('click', flipCard);
+            markMatched([card1, card2]);
+            matchedPairs++;
+
+            // Update the player's score
+            playerScores[`Player${currentPlayer}`]++;
+            updatePlayerScore(numPlayers, playerScores);
+
+
+            if (matchedPairs === numCards / 2) {
+              MultiPlayercreatePopup(numPlayers,playerScores);
+              showFun();
+
+            }
+          } else {
+            setTimeout(() => {
+              unflipCard(card1);
+              unflipCard(card2);
+            }, 500);
+            // Switch to the next player's turn
+            currentPlayer = (currentPlayer % numPlayers) + 1;
+            currentPlayerTurnBg(currentPlayer,numPlayers);
+          }
+          flippedCards = [];
+        }
+      }
+    });
+  });
 }
