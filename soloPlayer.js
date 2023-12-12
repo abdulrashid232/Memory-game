@@ -1,4 +1,5 @@
 // Solo popup funtion
+import { restartGame } from "./utils/card.js";
 
 export function createPopup(pTime,pMoves) {
   const popup = document.createElement('div');
