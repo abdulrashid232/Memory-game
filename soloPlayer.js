@@ -1,6 +1,6 @@
-// Solo popup funtion
-import { restartGame } from "./utils/card.js";
 
+import { restartGame } from "./utils/card.js";
+// Solo popup funtion
 export function createPopup(pTime,pMoves) {
   const popup = document.createElement('div');
   popup.className = 'popup';

@@ -1,4 +1,4 @@
-import { updatePlayerScore,markMatched,getWinners,showFun } from "./script.js";
+import { updatePlayerScore,markMatched,getWinners,showFun } from "./utils/generalUtils.js";
 import { flipCard,unflipCard,restartGame } from "./utils/card.js";
 let flippedCards = [];
 

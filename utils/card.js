@@ -1,5 +1,5 @@
 import { createPopup } from "../soloPlayer.js";
-import { markMatched,showFun,mobileMenu} from "../script.js";
+import { markMatched,showFun,mobileMenu} from "./generalUtils.js";
 import { multiPlayerFlipCardEventListener } from "../multiPlayer.js";
 const numbersInput = document.getElementById('numbers');
 const iconsInput = document.getElementById('icons');
