@@ -91,7 +91,7 @@ export function createFlipCardGrid() {
       </div>
     </div>`;
   
-    const numCards = 4;
+    const numCards = 16;
     const container = document.createElement('div');
     container.classList.add('grid-container');
     for (let i = 0; i < numCards; i++) {
@@ -195,7 +195,7 @@ export function createFlipCardGrid() {
       </div>
     </div>`;
   
-      const numCards = 8;
+      const numCards = 36;
       const container = document.createElement('div');
       container.classList.add('grid-container6x6');
       for (let i = 0; i < numCards; i++) {
@@ -336,7 +336,7 @@ export function createFlipCardGrid() {
       pairNav.appendChild(playerContainer);
     }
     if(fourByFourInput.checked){
-      const numCards = 4;
+      const numCards = 16;
       const container = document.createElement('div');
       container.classList.add('grid-container');
       for (let i = 0; i < numCards; i++) {
@@ -382,7 +382,7 @@ export function createFlipCardGrid() {
       multiPlayerFlipCardEventListener(flipCards, numPlayers,playerScores, numCards,currentPlayer, matchedPairs);
     }
     else if(sixBysixInput.checked){
-      const numCards = 8;
+      const numCards = 36;
       const container = document.createElement('div');
       container.classList.add('grid-container6x6');
       for (let i = 0; i < numCards; i++) {
