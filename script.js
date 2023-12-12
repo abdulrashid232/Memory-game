@@ -412,7 +412,7 @@ function createFlipCardGrid() {
   
   
               if (matchedPairs === numCards / 2) {
-                MultiPlayercreatePopup();
+                MultiPlayercreatePopup(numPlayers,playerScores);
                 showFun();
   
               }
@@ -498,7 +498,7 @@ function createFlipCardGrid() {
   
   
               if (matchedPairs === numCards / 2) {
-                MultiPlayercreatePopup();
+                MultiPlayercreatePopup(numPlayers,playerScores);
                 showFun();
   
               }
@@ -533,106 +533,8 @@ function createFlipCardGrid() {
       pairMatch.textContent = playerScores[`Player${i}`];
     }
   }
+  
 
-
-  function MultiPlayercreatePopup() {
-    const popup = document.createElement('div');
-    popup.className = 'popup';
-  
-    const popupContent = document.createElement('div');
-    popupContent.className = 'Multi-popup-content';
-  
-    const topNote = document.createElement('div');
-    topNote.className = 'top-note';
-  
-    const winners = getWinners();
-    const winnerText = winners.length > 1 ? 'It\'s a tie' : 'Wins\!';
-  
-    const winner = document.createElement('h2');
-    winner.textContent = winners.length> 1 ? `${winnerText} `: `${winners.join(', ')} ${winnerText}`;
-  
-    const p = document.createElement('p');
-    p.textContent = "Game Over! Here are the results...";
-  
-    topNote.appendChild(winner);
-    topNote.appendChild(p);
-    popupContent.appendChild(topNote);
-  
-    const playerData = [];
-    for (let i = 1; i <= numPlayers; i++) {
-      playerData.push({
-        player: `Player ${i}`,
-        pairs: playerScores[`Player${i}`],
-      });
-    }
-  
-    playerData.sort((a, b) => b.pairs - a.pairs);
-  
-    playerData.forEach((data) => {
-      const playerContainer = document.createElement('div');
-      playerContainer.classList.add('multiPlayerScores');
-  
-      const playerDiv = document.createElement('div');
-      playerDiv.id = data.player;
-      playerDiv.classList.add('player_score');
-  
-      const playerTitle = document.createElement('h4');
-      const isWinner = winners.includes(data.player) ? ' (Winner!)' : '';
-  
-      const pairMatch = document.createElement('p');
-      pairMatch.classList.add('pairMatch');
-      pairMatch.textContent = `${data.pairs} pairs`;
-      
-      playerTitle.textContent = data.player + isWinner;
-      if(playerTitle.textContent.includes('(Winner!)')){
-        playerDiv.style.backgroundColor= '#304859';
-        playerTitle.classList.add('whiteColor');
-        pairMatch.classList.add('whiteColor');
-        
-      }
-  
-      playerDiv.appendChild(playerTitle);
-      playerDiv.appendChild(pairMatch);
-  
-      playerContainer.appendChild(playerDiv);
-      popupContent.appendChild(playerContainer);
-    });
-  
-    const popBtn = document.createElement('div');
-    popBtn.className = 'popBtn';
-  
-    const restartButton = document.createElement('button');
-    restartButton.className = 'restart';
-    restartButton.textContent = 'Restart';
-  
-    restartButton.addEventListener('click', restartGame)
-  
-    const newGameButton = document.createElement('button');
-    newGameButton.className = 'new-game';
-    newGameButton.textContent = 'Setup New Game';
-  
-    newGameButton.addEventListener('click',() => {
-      window.location.href = 'index.html';
-    });
-  
-    popBtn.appendChild(restartButton);
-    popBtn.appendChild(newGameButton);
-    popupContent.appendChild(popBtn);
-  
-    popup.appendChild(popupContent);
-    document.body.appendChild(popup);
-  }
-  
-  function getWinners() {
-    const maxPairs = Math.max(...Object.values(playerScores));
-    const winners = [];
-    for (let i = 1; i <= numPlayers; i++) {
-      if (playerScores[`Player${i}`] === maxPairs) {
-        winners.push(`Player ${i}`);
-      }
-    }
-    return winners;
-  }
   
 
 
@@ -869,4 +771,103 @@ function shuffleArray(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
+}
+
+
+function MultiPlayercreatePopup(numPlayers,playerScores) {
+  const popup = document.createElement('div');
+  popup.className = 'popup';
+
+  const popupContent = document.createElement('div');
+  popupContent.className = 'Multi-popup-content';
+
+  const topNote = document.createElement('div');
+  topNote.className = 'top-note';
+
+  const winners = getWinners(numPlayers,playerScores);
+  const winnerText = winners.length > 1 ? 'It\'s a tie' : 'Wins\!';
+
+  const winner = document.createElement('h2');
+  winner.textContent = winners.length> 1 ? `${winnerText} `: `${winners.join(', ')} ${winnerText}`;
+
+  const p = document.createElement('p');
+  p.textContent = "Game Over! Here are the results...";
+
+  topNote.appendChild(winner);
+  topNote.appendChild(p);
+  popupContent.appendChild(topNote);
+
+  const playerData = [];
+  for (let i = 1; i <= numPlayers; i++) {
+    playerData.push({
+      player: `Player ${i}`,
+      pairs: playerScores[`Player${i}`],
+    });
+  }
+
+  playerData.sort((a, b) => b.pairs - a.pairs);
+
+  playerData.forEach((data) => {
+    const playerContainer = document.createElement('div');
+    playerContainer.classList.add('multiPlayerScores');
+
+    const playerDiv = document.createElement('div');
+    playerDiv.id = data.player;
+    playerDiv.classList.add('player_score');
+
+    const playerTitle = document.createElement('h4');
+    const isWinner = winners.includes(data.player) ? ' (Winner!)' : '';
+
+    const pairMatch = document.createElement('p');
+    pairMatch.classList.add('pairMatch');
+    pairMatch.textContent = `${data.pairs} pairs`;
+    
+    playerTitle.textContent = data.player + isWinner;
+    if(playerTitle.textContent.includes('(Winner!)')){
+      playerDiv.style.backgroundColor= '#304859';
+      playerTitle.classList.add('whiteColor');
+      pairMatch.classList.add('whiteColor');
+      
+    }
+
+    playerDiv.appendChild(playerTitle);
+    playerDiv.appendChild(pairMatch);
+
+    playerContainer.appendChild(playerDiv);
+    popupContent.appendChild(playerContainer);
+  });
+
+  const popBtn = document.createElement('div');
+  popBtn.className = 'popBtn';
+
+  const restartButton = document.createElement('button');
+  restartButton.className = 'restart';
+  restartButton.textContent = 'Restart';
+
+  restartButton.addEventListener('click', restartGame)
+
+  const newGameButton = document.createElement('button');
+  newGameButton.className = 'new-game';
+  newGameButton.textContent = 'Setup New Game';
+
+  newGameButton.addEventListener('click',() => {
+    window.location.href = 'index.html';
+  });
+
+  popBtn.appendChild(restartButton);
+  popBtn.appendChild(newGameButton);
+  popupContent.appendChild(popBtn);
+
+  popup.appendChild(popupContent);
+  document.body.appendChild(popup);
+}
+function getWinners(numPlayers,playerScores) {
+  const maxPairs = Math.max(...Object.values(playerScores));
+  const winners = [];
+  for (let i = 1; i <= numPlayers; i++) {
+    if (playerScores[`Player${i}`] === maxPairs) {
+      winners.push(`Player ${i}`);
+    }
+  }
+  return winners;
 }
