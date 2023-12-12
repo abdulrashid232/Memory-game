@@ -89,7 +89,7 @@ function createFlipCardGrid() {
       </div>
     </div>`;
   
-    const numCards = 16;
+    const numCards = 4;
     const container = document.createElement('div');
     container.classList.add('grid-container');
     for (let i = 0; i < numCards; i++) {
@@ -165,7 +165,7 @@ function createFlipCardGrid() {
                   pTime.textContent = timeTaken;
                   pMoves.textContent = movesTaken;
       
-      
+                  createPopup();
                   showFun();
                 }
               } else {
@@ -199,7 +199,7 @@ function createFlipCardGrid() {
       </div>
     </div>`;
   
-      const numCards = 36;
+      const numCards = 8;
       const container = document.createElement('div');
       container.classList.add('grid-container6x6');
       for (let i = 0; i < numCards; i++) {
@@ -275,7 +275,7 @@ function createFlipCardGrid() {
                   pTime.textContent = timeTaken;
                   pMoves.textContent = movesTaken;
       
-      
+                  createPopup();
                   showFun();
                 }
               } else {
@@ -346,7 +346,7 @@ function createFlipCardGrid() {
       pairNav.appendChild(playerContainer);
     }
     if(fourByFourInput.checked){
-      const numCards = 16;
+      const numCards = 4;
       const container = document.createElement('div');
       container.classList.add('grid-container');
       for (let i = 0; i < numCards; i++) {
@@ -417,9 +417,8 @@ function createFlipCardGrid() {
   
   
               if (matchedPairs === numCards / 2) {
-                MultiPlayercreatePopup()
-                const myPopup = document.querySelector('.popup');
-                myPopup.classList.add('show');
+                MultiPlayercreatePopup();
+                showFun();
   
               }
             } else {
@@ -438,7 +437,7 @@ function createFlipCardGrid() {
     });
     }
     else if(sixBysixInput.checked){
-      const numCards = 36;
+      const numCards = 8;
       const container = document.createElement('div');
       container.classList.add('grid-container6x6');
       for (let i = 0; i < numCards; i++) {
@@ -509,9 +508,8 @@ function createFlipCardGrid() {
   
   
               if (matchedPairs === numCards / 2) {
-                MultiPlayercreatePopup()
-                const myPopup = document.querySelector('.popup');
-                myPopup.classList.add('show');
+                MultiPlayercreatePopup();
+                showFun();
   
               }
             } else {
@@ -837,7 +835,6 @@ function restartGame() {
 
 }
 function showFun() {
-  createPopup();
   const myPopup = document.querySelector('.popup');
   myPopup.classList.add('show');
 }
