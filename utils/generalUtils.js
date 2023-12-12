@@ -4,7 +4,7 @@ export function showFun() {
   myPopup.classList.add('show');
 }
 
-
+// Mobile Menu
 export function mobileMenu(){
   const overlayDiv = document.createElement('div');
   overlayDiv.setAttribute('id', 'myNav');
@@ -48,7 +48,7 @@ export function mobileMenu(){
 
 
 
-
+// winner funtion
 export function getWinners(numPlayers,playerScores) {
   const maxPairs = Math.max(...Object.values(playerScores));
   const winners = [];
@@ -62,7 +62,7 @@ export function getWinners(numPlayers,playerScores) {
 
 
 
-
+// UpdateScore for multiplayer
 export function updatePlayerScore(numPlayers,playerScores) {
   for (let i = 1; i <= numPlayers; i++) {
     const playerElement = document.getElementById(`Player${i}`);
@@ -71,7 +71,7 @@ export function updatePlayerScore(numPlayers,playerScores) {
   }
 }
 
-
+// function to change winner bg-color
 export function markMatched(cards) {
   cards.forEach(card => {
     card.classList.add('matched');
@@ -81,3 +81,5 @@ export function markMatched(cards) {
     });
   });
 }
+
+// @Abdul-Rashid

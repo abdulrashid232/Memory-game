@@ -1,6 +1,8 @@
 import { createPopup } from "../soloPlayer.js";
 import { markMatched,showFun,mobileMenu} from "./generalUtils.js";
 import { multiPlayerFlipCardEventListener } from "../multiPlayer.js";
+
+
 const numbersInput = document.getElementById('numbers');
 const iconsInput = document.getElementById('icons');
 const onePlayerInput = document.getElementById('1');
@@ -71,7 +73,7 @@ export function createFlipCardGrid() {
 
   let playerScores = {};
   
-  
+  // solo player 
   if((fourByFourInput.checked || sixBysixInput.checked) && onePlayerInput.checked){
     if(fourByFourInput.checked){
       const bottomNav = document.createElement('div');
@@ -284,7 +286,7 @@ export function createFlipCardGrid() {
 
 
   }
-
+// Multiplayer
   else if((fourByFourInput.checked || sixBysixInput.checked) && (twoPlayerInput.checked || threePlayerInput|| fourPlayerInput.checked)){
     const pairNav = document.createElement('div');
     pairNav.classList.add('pair-nav');
@@ -465,6 +467,7 @@ export function createFlipCardGrid() {
  
 }
 
+// Card Content
 export function flipCardContent(numCards,){
   if (numbersInput.checked) {
     pairs = Array.from({ length: numCards / 2 }, (_, i) => i + 1);
@@ -477,11 +480,13 @@ export function flipCardContent(numCards,){
   return shuffledPairs;
 }
 
+// Icons generater
 function generateShuffledIcons(numPairs) {
   const icons = ['🎉', '🚀', '🌟', '🍎', '🌈', '🐱', '🎸', '🚗', '🍕', '📚', '🎨', '🦄', '🌺', '🎈', '🍪', '🐼', '🍉', '🌞'];
   const shuffledIcons = shuffleArray(icons);
   return shuffledIcons.slice(0, numPairs);
 }
+// Shuffle Function
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -489,7 +494,7 @@ function shuffleArray(array) {
   }
   return array;
 }
-
+// flip function
 export function flipCard(card) {
   card.classList.add('flipped');
   let innerCard = card.querySelectorAll('.flip-card-inner');
@@ -497,7 +502,7 @@ export function flipCard(card) {
     element.style.transform = 'rotateY(180deg)';
   });
 }
-
+// unflip function
 export function unflipCard(card) {
   card.classList.remove('flipped');
   let innerCard = card.querySelectorAll('.flip-card-inner');
@@ -505,7 +510,7 @@ export function unflipCard(card) {
     element.style.transform = 'rotateY(0deg)';
   });
 }
-
+// update moves
 function updateMovesDisplay() {
   totalMoves = moves; 
   pMoves.textContent = `${totalMoves} Moves`;
@@ -542,3 +547,5 @@ export function restartGame() {
 
 
 }
+
+// @Abdul-Rashid

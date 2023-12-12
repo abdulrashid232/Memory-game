@@ -12,7 +12,7 @@ const sixBysixInput = document.getElementById('6x6');
 
 
 
-
+// Start Button EventListener
 
 StartBtn.addEventListener('click', () => {
   if ((numbersInput.checked || iconsInput.checked) && (onePlayerInput.checked || twoPlayerInput.checked || threePlayerInput|| fourPlayerInput.checked) && (fourByFourInput.checked || sixBysixInput.checked)) {
@@ -22,3 +22,5 @@ StartBtn.addEventListener('click', () => {
     alert('Please select all the required options before starting the game.');
   }
 });
+
+// @Abdul-Rashid

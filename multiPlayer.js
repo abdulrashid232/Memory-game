@@ -2,6 +2,8 @@ import { updatePlayerScore,markMatched,getWinners,showFun } from "./utils/genera
 import { flipCard,unflipCard,restartGame } from "./utils/card.js";
 let flippedCards = [];
 
+
+// multiplayer eventListerner
 export function multiPlayerFlipCardEventListener(flipCards, numPlayers,playerScores, numCards,currentPlayer, matchedPairs){
   flipCards.forEach(card => {
     card.addEventListener('click', () => {
@@ -46,6 +48,7 @@ export function multiPlayerFlipCardEventListener(flipCards, numPlayers,playerSco
   });
 }
 
+// multiplayer Pop menu
 function MultiPlayercreatePopup(numPlayers,playerScores) {
   const popup = document.createElement('div');
   popup.className = 'popup';
@@ -134,6 +137,7 @@ function MultiPlayercreatePopup(numPlayers,playerScores) {
   document.body.appendChild(popup);
 }
 
+// change bg-color of active player 
 function currentPlayerTurnBg(currentPlayer,numPlayers) {
   for (let i = 1; i <= numPlayers; i++) {
       const pairContainer = document.getElementById(`Player${i}`);
@@ -142,3 +146,5 @@ function currentPlayerTurnBg(currentPlayer,numPlayers) {
   const currentPlayerContainer = document.getElementById(`Player${currentPlayer}`);
   currentPlayerContainer.classList.add('active');
 }
+
+// @Abdul-Rashid
